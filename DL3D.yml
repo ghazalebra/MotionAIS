@@ -1,0 +1,4 @@
+name: DL3D
+channels:
+  - defaults
+prefix: /usagers2/ghebr/.conda/envs/DL3D

@@ -1,0 +1,8 @@
+name: visuals-3D
+channels:
+  - conda-forge
+  - open3d-admin
+  - nodefaults
+dependencies:
+  - python=3.9
+  - open3d
