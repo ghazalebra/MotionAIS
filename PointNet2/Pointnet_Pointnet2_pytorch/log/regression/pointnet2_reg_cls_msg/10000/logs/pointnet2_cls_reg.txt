@@ -1,0 +1,276 @@
+2023-08-28 16:23:57,618 - Model - INFO - PARAMETER ...
+2023-08-28 16:23:57,618 - Model - INFO - Namespace(batch_size=8, class_weights=False, decay_rate=0.0001, epoch=50, gpu='0', learning_rate=0.001, log_dir='pointnet2_reg_cls_msg', lr_decay=0.5, model='pointnet2_cls_reg', no_scheduler=False, normal=True, npoint=10000, optimizer='AdamW', step_size=20, use_cpu=False)
+2023-08-28 16:23:57,619 - Model - INFO - The number of training data is: 3451
+2023-08-28 16:23:57,619 - Model - INFO - The number of test data is: 325
+2023-08-28 16:24:07,745 - Model - INFO - PARAMETER ...
+2023-08-28 16:24:07,745 - Model - INFO - Namespace(batch_size=8, class_weights=False, decay_rate=0.0001, epoch=50, gpu='0', learning_rate=0.001, log_dir='pointnet2_reg_cls_msg', lr_decay=0.5, model='pointnet2_cls_reg', no_scheduler=False, normal=True, npoint=10000, optimizer='AdamW', step_size=20, use_cpu=False)
+2023-08-28 16:24:07,746 - Model - INFO - The number of training data is: 3451
+2023-08-28 16:24:07,746 - Model - INFO - The number of test data is: 325
+2023-08-28 16:24:08,412 - Model - INFO - No existing model, starting training from scratch (pre-pretrained model)...
+2023-08-28 16:24:08,414 - Model - INFO - Epoch 1 (1/50):
+2023-08-28 16:24:08,415 - Model - INFO - Learning rate:0.001000
+2023-08-28 16:27:09,334 - Model - INFO - Train Loss (MSE) is: 0.49729
+2023-08-28 16:27:23,673 - Model - INFO - Validation Loss (MSE) is: 0.00915
+2023-08-28 16:27:23,673 - Model - INFO - Best loss is: 0.00915
+2023-08-28 16:27:23,673 - Model - INFO - Save model...
+2023-08-28 16:27:23,673 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:00:20,559 - Model - INFO - PARAMETER ...
+2023-08-29 11:00:20,559 - Model - INFO - Namespace(batch_size=8, class_weights=False, decay_rate=0.0001, epoch=50, gpu='0', learning_rate=0.001, log_dir='pointnet2_reg_cls_msg', lr_decay=0.5, model='pointnet2_cls_reg', no_scheduler=False, normal=True, npoint=10000, optimizer='AdamW', step_size=20, use_cpu=False)
+2023-08-29 11:00:20,560 - Model - INFO - The number of training data is: 3451
+2023-08-29 11:00:20,560 - Model - INFO - The number of test data is: 325
+2023-08-29 11:00:22,732 - Model - INFO - No existing model, starting training from scratch (pre-pretrained model)...
+2023-08-29 11:00:22,737 - Model - INFO - Epoch 1 (1/50):
+2023-08-29 11:00:22,737 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:01:49,004 - Model - INFO - PARAMETER ...
+2023-08-29 11:01:49,005 - Model - INFO - Namespace(batch_size=8, class_weights=False, decay_rate=0.0001, epoch=50, gpu='0', learning_rate=0.001, log_dir='pointnet2_reg_cls_msg', lr_decay=0.5, model='pointnet2_cls_reg', no_scheduler=False, normal=True, npoint=10000, optimizer='AdamW', step_size=20, use_cpu=False)
+2023-08-29 11:01:49,006 - Model - INFO - The number of training data is: 3451
+2023-08-29 11:01:49,006 - Model - INFO - The number of test data is: 325
+2023-08-29 11:01:49,668 - Model - INFO - No existing model, starting training from scratch (pre-pretrained model)...
+2023-08-29 11:01:49,671 - Model - INFO - Epoch 1 (1/50):
+2023-08-29 11:01:49,671 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:04:49,899 - Model - INFO - Train Loss (MSE) is: 0.48472
+2023-08-29 11:05:04,273 - Model - INFO - Validation Loss (MSE) is: 0.00754
+2023-08-29 11:05:04,274 - Model - INFO - Best loss is: 0.00754
+2023-08-29 11:05:04,274 - Model - INFO - Save model...
+2023-08-29 11:05:04,274 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:05:04,320 - Model - INFO - Saving model....
+2023-08-29 11:05:04,329 - Model - INFO - Epoch 2 (2/50):
+2023-08-29 11:05:04,329 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:08:02,603 - Model - INFO - Train Loss (MSE) is: 0.09342
+2023-08-29 11:08:16,555 - Model - INFO - Validation Loss (MSE) is: 0.00495
+2023-08-29 11:08:16,555 - Model - INFO - Best loss is: 0.00495
+2023-08-29 11:08:16,555 - Model - INFO - Save model...
+2023-08-29 11:08:16,555 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:08:16,608 - Model - INFO - Saving model....
+2023-08-29 11:08:16,648 - Model - INFO - Epoch 3 (3/50):
+2023-08-29 11:08:16,648 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:11:13,978 - Model - INFO - Train Loss (MSE) is: 0.03127
+2023-08-29 11:11:28,091 - Model - INFO - Validation Loss (MSE) is: 0.00323
+2023-08-29 11:11:28,091 - Model - INFO - Best loss is: 0.00323
+2023-08-29 11:11:28,091 - Model - INFO - Save model...
+2023-08-29 11:11:28,091 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:11:28,132 - Model - INFO - Saving model....
+2023-08-29 11:11:28,168 - Model - INFO - Epoch 4 (4/50):
+2023-08-29 11:11:28,168 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:14:25,944 - Model - INFO - Train Loss (MSE) is: 0.01519
+2023-08-29 11:14:39,905 - Model - INFO - Validation Loss (MSE) is: 0.00418
+2023-08-29 11:14:39,928 - Model - INFO - Epoch 4 (5/50):
+2023-08-29 11:14:39,928 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:17:38,153 - Model - INFO - Train Loss (MSE) is: 0.01016
+2023-08-29 11:17:52,312 - Model - INFO - Validation Loss (MSE) is: 0.00275
+2023-08-29 11:17:52,312 - Model - INFO - Best loss is: 0.00275
+2023-08-29 11:17:52,312 - Model - INFO - Save model...
+2023-08-29 11:17:52,312 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:17:52,373 - Model - INFO - Saving model....
+2023-08-29 11:17:52,400 - Model - INFO - Epoch 5 (6/50):
+2023-08-29 11:17:52,400 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:20:50,681 - Model - INFO - Train Loss (MSE) is: 0.00826
+2023-08-29 11:21:04,719 - Model - INFO - Validation Loss (MSE) is: 0.00256
+2023-08-29 11:21:04,719 - Model - INFO - Best loss is: 0.00256
+2023-08-29 11:21:04,719 - Model - INFO - Save model...
+2023-08-29 11:21:04,719 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:21:04,757 - Model - INFO - Saving model....
+2023-08-29 11:21:04,785 - Model - INFO - Epoch 6 (7/50):
+2023-08-29 11:21:04,785 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:24:02,911 - Model - INFO - Train Loss (MSE) is: 0.00736
+2023-08-29 11:24:16,982 - Model - INFO - Validation Loss (MSE) is: 0.00266
+2023-08-29 11:24:17,013 - Model - INFO - Epoch 6 (8/50):
+2023-08-29 11:24:17,013 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:27:14,808 - Model - INFO - Train Loss (MSE) is: 0.00696
+2023-08-29 11:27:28,739 - Model - INFO - Validation Loss (MSE) is: 0.00229
+2023-08-29 11:27:28,740 - Model - INFO - Best loss is: 0.00229
+2023-08-29 11:27:28,740 - Model - INFO - Save model...
+2023-08-29 11:27:28,740 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:27:28,793 - Model - INFO - Saving model....
+2023-08-29 11:27:28,827 - Model - INFO - Epoch 7 (9/50):
+2023-08-29 11:27:28,827 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:30:26,708 - Model - INFO - Train Loss (MSE) is: 0.00664
+2023-08-29 11:30:40,725 - Model - INFO - Validation Loss (MSE) is: 0.00230
+2023-08-29 11:30:40,751 - Model - INFO - Epoch 7 (10/50):
+2023-08-29 11:30:40,751 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:33:38,472 - Model - INFO - Train Loss (MSE) is: 0.00630
+2023-08-29 11:33:52,553 - Model - INFO - Validation Loss (MSE) is: 0.00169
+2023-08-29 11:33:52,553 - Model - INFO - Best loss is: 0.00169
+2023-08-29 11:33:52,553 - Model - INFO - Save model...
+2023-08-29 11:33:52,554 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:33:52,592 - Model - INFO - Saving model....
+2023-08-29 11:33:52,633 - Model - INFO - Epoch 8 (11/50):
+2023-08-29 11:33:52,633 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:36:50,545 - Model - INFO - Train Loss (MSE) is: 0.00619
+2023-08-29 11:37:04,530 - Model - INFO - Validation Loss (MSE) is: 0.00155
+2023-08-29 11:37:04,531 - Model - INFO - Best loss is: 0.00155
+2023-08-29 11:37:04,531 - Model - INFO - Save model...
+2023-08-29 11:37:04,531 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:37:04,574 - Model - INFO - Saving model....
+2023-08-29 11:37:04,596 - Model - INFO - Epoch 9 (12/50):
+2023-08-29 11:37:04,596 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:40:02,386 - Model - INFO - Train Loss (MSE) is: 0.00598
+2023-08-29 11:40:16,406 - Model - INFO - Validation Loss (MSE) is: 0.00152
+2023-08-29 11:40:16,406 - Model - INFO - Best loss is: 0.00152
+2023-08-29 11:40:16,406 - Model - INFO - Save model...
+2023-08-29 11:40:16,406 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:40:16,454 - Model - INFO - Saving model....
+2023-08-29 11:40:16,490 - Model - INFO - Epoch 10 (13/50):
+2023-08-29 11:40:16,491 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:43:14,434 - Model - INFO - Train Loss (MSE) is: 0.00569
+2023-08-29 11:43:28,535 - Model - INFO - Validation Loss (MSE) is: 0.00092
+2023-08-29 11:43:28,535 - Model - INFO - Best loss is: 0.00092
+2023-08-29 11:43:28,535 - Model - INFO - Save model...
+2023-08-29 11:43:28,535 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:43:28,576 - Model - INFO - Saving model....
+2023-08-29 11:43:28,601 - Model - INFO - Epoch 11 (14/50):
+2023-08-29 11:43:28,601 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:46:26,309 - Model - INFO - Train Loss (MSE) is: 0.00576
+2023-08-29 11:46:40,417 - Model - INFO - Validation Loss (MSE) is: 0.00125
+2023-08-29 11:46:40,440 - Model - INFO - Epoch 11 (15/50):
+2023-08-29 11:46:40,440 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:49:38,361 - Model - INFO - Train Loss (MSE) is: 0.00569
+2023-08-29 11:49:52,268 - Model - INFO - Validation Loss (MSE) is: 0.00073
+2023-08-29 11:49:52,268 - Model - INFO - Best loss is: 0.00073
+2023-08-29 11:49:52,268 - Model - INFO - Save model...
+2023-08-29 11:49:52,268 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 11:49:52,311 - Model - INFO - Saving model....
+2023-08-29 11:49:52,352 - Model - INFO - Epoch 12 (16/50):
+2023-08-29 11:49:52,352 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:52:50,292 - Model - INFO - Train Loss (MSE) is: 0.00561
+2023-08-29 11:53:04,329 - Model - INFO - Validation Loss (MSE) is: 0.00428
+2023-08-29 11:53:04,346 - Model - INFO - Epoch 12 (17/50):
+2023-08-29 11:53:04,347 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:56:02,292 - Model - INFO - Train Loss (MSE) is: 0.00589
+2023-08-29 11:56:16,356 - Model - INFO - Validation Loss (MSE) is: 0.00130
+2023-08-29 11:56:16,382 - Model - INFO - Epoch 12 (18/50):
+2023-08-29 11:56:16,382 - Model - INFO - Learning rate:0.001000
+2023-08-29 11:59:13,980 - Model - INFO - Train Loss (MSE) is: 0.00575
+2023-08-29 11:59:28,025 - Model - INFO - Validation Loss (MSE) is: 0.00118
+2023-08-29 11:59:28,052 - Model - INFO - Epoch 12 (19/50):
+2023-08-29 11:59:28,052 - Model - INFO - Learning rate:0.001000
+2023-08-29 12:02:25,905 - Model - INFO - Train Loss (MSE) is: 0.00565
+2023-08-29 12:02:39,883 - Model - INFO - Validation Loss (MSE) is: 0.00164
+2023-08-29 12:02:39,903 - Model - INFO - Epoch 12 (20/50):
+2023-08-29 12:02:39,903 - Model - INFO - Learning rate:0.001000
+2023-08-29 12:05:37,499 - Model - INFO - Train Loss (MSE) is: 0.00560
+2023-08-29 12:05:51,590 - Model - INFO - Validation Loss (MSE) is: 0.00139
+2023-08-29 12:05:51,619 - Model - INFO - Epoch 12 (21/50):
+2023-08-29 12:05:51,619 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:08:49,262 - Model - INFO - Train Loss (MSE) is: 0.00533
+2023-08-29 12:09:03,182 - Model - INFO - Validation Loss (MSE) is: 0.00099
+2023-08-29 12:09:03,202 - Model - INFO - Epoch 12 (22/50):
+2023-08-29 12:09:03,203 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:12:00,781 - Model - INFO - Train Loss (MSE) is: 0.00515
+2023-08-29 12:12:14,747 - Model - INFO - Validation Loss (MSE) is: 0.00090
+2023-08-29 12:12:14,772 - Model - INFO - Epoch 12 (23/50):
+2023-08-29 12:12:14,772 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:15:22,362 - Model - INFO - Train Loss (MSE) is: 0.00510
+2023-08-29 12:15:36,410 - Model - INFO - Validation Loss (MSE) is: 0.00094
+2023-08-29 12:15:36,440 - Model - INFO - Epoch 12 (24/50):
+2023-08-29 12:15:36,440 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:18:35,691 - Model - INFO - Train Loss (MSE) is: 0.00495
+2023-08-29 12:18:49,899 - Model - INFO - Validation Loss (MSE) is: 0.00084
+2023-08-29 12:18:49,928 - Model - INFO - Epoch 12 (25/50):
+2023-08-29 12:18:49,928 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:21:50,336 - Model - INFO - Train Loss (MSE) is: 0.00487
+2023-08-29 12:22:04,400 - Model - INFO - Validation Loss (MSE) is: 0.00059
+2023-08-29 12:22:04,401 - Model - INFO - Best loss is: 0.00059
+2023-08-29 12:22:04,401 - Model - INFO - Save model...
+2023-08-29 12:22:04,401 - Model - INFO - Saving at log/regression/pointnet2_reg_cls_msg/10000/checkpoints/best_model.pth
+2023-08-29 12:22:04,453 - Model - INFO - Saving model....
+2023-08-29 12:22:04,489 - Model - INFO - Epoch 13 (26/50):
+2023-08-29 12:22:04,489 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:25:03,087 - Model - INFO - Train Loss (MSE) is: 0.00486
+2023-08-29 12:25:17,138 - Model - INFO - Validation Loss (MSE) is: 0.00063
+2023-08-29 12:25:17,159 - Model - INFO - Epoch 13 (27/50):
+2023-08-29 12:25:17,159 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:28:15,037 - Model - INFO - Train Loss (MSE) is: 0.00473
+2023-08-29 12:28:29,138 - Model - INFO - Validation Loss (MSE) is: 0.00082
+2023-08-29 12:28:29,161 - Model - INFO - Epoch 13 (28/50):
+2023-08-29 12:28:29,161 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:31:27,017 - Model - INFO - Train Loss (MSE) is: 0.00464
+2023-08-29 12:31:40,947 - Model - INFO - Validation Loss (MSE) is: 0.00065
+2023-08-29 12:31:40,966 - Model - INFO - Epoch 13 (29/50):
+2023-08-29 12:31:40,966 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:34:39,022 - Model - INFO - Train Loss (MSE) is: 0.00457
+2023-08-29 12:34:52,981 - Model - INFO - Validation Loss (MSE) is: 0.00092
+2023-08-29 12:34:53,013 - Model - INFO - Epoch 13 (30/50):
+2023-08-29 12:34:53,013 - Model - INFO - Learning rate:0.000100
+2023-08-29 12:37:50,770 - Model - INFO - Train Loss (MSE) is: 0.00455
+2023-08-29 12:38:04,872 - Model - INFO - Validation Loss (MSE) is: 0.00118
+2023-08-29 12:38:04,891 - Model - INFO - Epoch 13 (31/50):
+2023-08-29 12:38:04,891 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:41:02,625 - Model - INFO - Train Loss (MSE) is: 0.00444
+2023-08-29 12:41:16,560 - Model - INFO - Validation Loss (MSE) is: 0.00102
+2023-08-29 12:41:16,590 - Model - INFO - Epoch 13 (32/50):
+2023-08-29 12:41:16,590 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:44:14,417 - Model - INFO - Train Loss (MSE) is: 0.00440
+2023-08-29 12:44:28,418 - Model - INFO - Validation Loss (MSE) is: 0.00099
+2023-08-29 12:44:28,434 - Model - INFO - Epoch 13 (33/50):
+2023-08-29 12:44:28,434 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:47:26,226 - Model - INFO - Train Loss (MSE) is: 0.00444
+2023-08-29 12:47:40,389 - Model - INFO - Validation Loss (MSE) is: 0.00078
+2023-08-29 12:47:40,413 - Model - INFO - Epoch 13 (34/50):
+2023-08-29 12:47:40,414 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:50:38,371 - Model - INFO - Train Loss (MSE) is: 0.00427
+2023-08-29 12:50:52,509 - Model - INFO - Validation Loss (MSE) is: 0.00090
+2023-08-29 12:50:52,528 - Model - INFO - Epoch 13 (35/50):
+2023-08-29 12:50:52,529 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:53:50,461 - Model - INFO - Train Loss (MSE) is: 0.00428
+2023-08-29 12:54:04,615 - Model - INFO - Validation Loss (MSE) is: 0.00085
+2023-08-29 12:54:04,644 - Model - INFO - Epoch 13 (36/50):
+2023-08-29 12:54:04,644 - Model - INFO - Learning rate:0.000010
+2023-08-29 12:57:02,435 - Model - INFO - Train Loss (MSE) is: 0.00435
+2023-08-29 12:57:16,404 - Model - INFO - Validation Loss (MSE) is: 0.00086
+2023-08-29 12:57:16,421 - Model - INFO - Epoch 13 (37/50):
+2023-08-29 12:57:16,421 - Model - INFO - Learning rate:0.000010
+2023-08-29 13:00:14,252 - Model - INFO - Train Loss (MSE) is: 0.00431
+2023-08-29 13:00:28,284 - Model - INFO - Validation Loss (MSE) is: 0.00087
+2023-08-29 13:00:28,317 - Model - INFO - Epoch 13 (38/50):
+2023-08-29 13:00:28,317 - Model - INFO - Learning rate:0.000010
+2023-08-29 13:03:25,927 - Model - INFO - Train Loss (MSE) is: 0.00438
+2023-08-29 13:03:39,887 - Model - INFO - Validation Loss (MSE) is: 0.00098
+2023-08-29 13:03:39,903 - Model - INFO - Epoch 13 (39/50):
+2023-08-29 13:03:39,903 - Model - INFO - Learning rate:0.000010
+2023-08-29 13:06:37,971 - Model - INFO - Train Loss (MSE) is: 0.00422
+2023-08-29 13:06:51,973 - Model - INFO - Validation Loss (MSE) is: 0.00119
+2023-08-29 13:06:51,999 - Model - INFO - Epoch 13 (40/50):
+2023-08-29 13:06:51,999 - Model - INFO - Learning rate:0.000010
+2023-08-29 13:09:49,873 - Model - INFO - Train Loss (MSE) is: 0.00424
+2023-08-29 13:10:03,923 - Model - INFO - Validation Loss (MSE) is: 0.00084
+2023-08-29 13:10:03,943 - Model - INFO - Epoch 13 (41/50):
+2023-08-29 13:10:03,943 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:13:01,805 - Model - INFO - Train Loss (MSE) is: 0.00424
+2023-08-29 13:13:15,867 - Model - INFO - Validation Loss (MSE) is: 0.00084
+2023-08-29 13:13:15,889 - Model - INFO - Epoch 13 (42/50):
+2023-08-29 13:13:15,889 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:16:13,590 - Model - INFO - Train Loss (MSE) is: 0.00431
+2023-08-29 13:16:27,620 - Model - INFO - Validation Loss (MSE) is: 0.00115
+2023-08-29 13:16:27,639 - Model - INFO - Epoch 13 (43/50):
+2023-08-29 13:16:27,639 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:19:25,395 - Model - INFO - Train Loss (MSE) is: 0.00425
+2023-08-29 13:19:39,462 - Model - INFO - Validation Loss (MSE) is: 0.00089
+2023-08-29 13:19:39,490 - Model - INFO - Epoch 13 (44/50):
+2023-08-29 13:19:39,490 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:22:37,440 - Model - INFO - Train Loss (MSE) is: 0.00434
+2023-08-29 13:22:51,832 - Model - INFO - Validation Loss (MSE) is: 0.00086
+2023-08-29 13:22:51,850 - Model - INFO - Epoch 13 (45/50):
+2023-08-29 13:22:51,850 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:25:49,713 - Model - INFO - Train Loss (MSE) is: 0.00416
+2023-08-29 13:26:03,788 - Model - INFO - Validation Loss (MSE) is: 0.00117
+2023-08-29 13:26:03,814 - Model - INFO - Epoch 13 (46/50):
+2023-08-29 13:26:03,814 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:29:01,556 - Model - INFO - Train Loss (MSE) is: 0.00431
+2023-08-29 13:29:15,588 - Model - INFO - Validation Loss (MSE) is: 0.00078
+2023-08-29 13:29:15,616 - Model - INFO - Epoch 13 (47/50):
+2023-08-29 13:29:15,616 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:32:13,365 - Model - INFO - Train Loss (MSE) is: 0.00417
+2023-08-29 13:32:27,397 - Model - INFO - Validation Loss (MSE) is: 0.00139
+2023-08-29 13:32:27,439 - Model - INFO - Epoch 13 (48/50):
+2023-08-29 13:32:27,440 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:35:25,215 - Model - INFO - Train Loss (MSE) is: 0.00417
+2023-08-29 13:35:39,295 - Model - INFO - Validation Loss (MSE) is: 0.00081
+2023-08-29 13:35:39,321 - Model - INFO - Epoch 13 (49/50):
+2023-08-29 13:35:39,321 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:38:37,224 - Model - INFO - Train Loss (MSE) is: 0.00425
+2023-08-29 13:38:51,227 - Model - INFO - Validation Loss (MSE) is: 0.00087
+2023-08-29 13:38:51,256 - Model - INFO - Epoch 13 (50/50):
+2023-08-29 13:38:51,256 - Model - INFO - Learning rate:0.000001
+2023-08-29 13:41:49,047 - Model - INFO - Train Loss (MSE) is: 0.00417
+2023-08-29 13:42:03,092 - Model - INFO - Validation Loss (MSE) is: 0.00098
