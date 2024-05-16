@@ -1,5 +1,5 @@
 /.idea
-
+/__pycache__
 /flownet_experiments
 /PointNet2/.idea
 
@@ -15,3 +15,7 @@
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/10000/predictions
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/10000-v1/predictions
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/20000/predictions
+
+
+/interface
+/backend 
