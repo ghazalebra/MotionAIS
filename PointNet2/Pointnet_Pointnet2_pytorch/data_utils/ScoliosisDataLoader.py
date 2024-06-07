@@ -2,26 +2,17 @@ import torch
 from torch.utils.data import Dataset, DataLoader, random_split
 import os
 import numpy as np
-import json
 from tqdm import tqdm
-import cv2
-import open3d as o3d
 import numpy as np
 import math
 import random
-from pygsp import graphs
-from scipy.spatial import cKDTree
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import shortest_path
 
-from plyfile import PlyData, PlyElement
-import time
 
 
 class ScoliosisDataset(Dataset):
     """Back Landmarks dataset."""
-
-    def __init__(self, root, transform=None, augmentation=False, npoints=10, normal_channel=False, class_weights=False, split='train', task='reg', mode='train'):
+    # either pass the path to the file containing names of the frames (root), or an array of frames (data)
+    def __init__(self, root='', data=[], transform=None, augmentation=False, npoints=10, normal_channel=False, class_weights=False, split='train', task='reg', mode='train', preprocess=True):
         """
         Arguments:
             root_dir (string): /intensity: the intensity images (.jpg)
@@ -38,8 +29,10 @@ class ScoliosisDataset(Dataset):
         self.class_weights = class_weights
         self.split = split
         self.task = task
+        self.mode = mode
+        # for now assuming at inference there's only one sequence
         if mode == 'inference':
-            self.data = os.listdir(root)
+            self.data = data
 
         else:
             with open(self.root + f'/{self.split}.txt', 'r') as data_file:
@@ -50,6 +43,7 @@ class ScoliosisDataset(Dataset):
         self.w = 1936
         self.h = 1176
         self.header_size = 512
+        self.preprocess = preprocess
         np.random.seed(0)
 
     def __len__(self):
@@ -68,56 +62,67 @@ class ScoliosisDataset(Dataset):
         # I might want to use cache. Comment it for now.
         # if index in self.cache:
         #     point_set, cls, seg = self.cache[index]
-        frame_name = self.data[idx].strip('\n')
-        path = self.root + '/' + create_path(frame_name)
-        # print(path)
-        with open(path, 'rb') as frame_file:
-            frame = np.load(frame_file, allow_pickle=True).item()
-        frame['radius'] = 0.15
-        if 'pt19' in frame_name:
-            frame['radius'] = 0.08
-        if 'pt20' in frame_name:
-            frame['radius'] = 0.08
+        if self.mode != 'inference':
+            frame_name = self.data[idx].strip('\n')
+            path = self.root + '/' + create_path(frame_name)
+            # print(path)
+            with open(path, 'rb') as frame_file:
+                frame = np.load(frame_file, allow_pickle=True).item()
+            frame['radius'] = 0.15
+            if 'pt19' in frame_name:
+                frame['radius'] = 0.08
+            if 'pt20' in frame_name:
+                frame['radius'] = 0.08
 
-        points = np.array(frame['xyz'])
-        markers = np.array(convert_landmarks_to_tensor(frame['markers']))
-        pixel_vals = frame['intensity']
-        markers_indices = find_indices(markers, points)
-        pixel_vals = np.repeat(pixel_vals, 3).reshape(-1, 3)
+            points = np.array(frame['xyz'])
+            markers = np.array(convert_landmarks_to_tensor(frame['markers']))
+            pixel_vals = frame['intensity']
+            markers_indices = find_indices(markers, points)
+            pixel_vals = np.repeat(pixel_vals, 3).reshape(-1, 3)
 
-        points_and_markers, m = pc_normalize(np.concatenate((points, markers), axis=0))
+            points_and_markers, m = pc_normalize(np.concatenate((points, markers), axis=0))
+            
+            if self.augmentation:
+                points_and_markers = rotate_3d(points_and_markers)
+            
+            points_normalized = points_and_markers[:-8]
+            markers_normalized = points_and_markers[-8:] 
+
+            # print(len(points_and_markers), len(points_normalized), len(markers_normalized))
+
+            downsampled_indices = np.concatenate((np.random.choice(len(points_normalized), self.npoints-len(markers_indices), replace=True), markers_indices))
+
+            # with open("test_repro2.txt", "ab") as f:
+            #     np.savetxt(f, downsampled_indices)
+            #     f.write(b'\n')
+            points = points[downsampled_indices, :]
+            pointset_downsampled = points_normalized[downsampled_indices, :]
+            pixel_vals = pixel_vals[downsampled_indices, :]
+
+            segments_labels = []
+            segments_points = []
+            if self.task == 'seg':
+                segments_labels, segments_points = find_segments(markers_normalized, pointset_downsampled, frame['radius'])      
+            
+            # weights = np.ones([len(segments_points)], dtype=np.float64)
+            # if self.class_weights:
+            #     num_per_class = np.array([len(segment_points) for segment_points in segments_points], dtype=np.int32)
+            #     weights = get_class_weights(num_per_class, normalize=True)
+            points_ = np.concatenate((pointset_downsampled, pixel_vals), axis=1)
         
-        if self.augmentation:
-            points_and_markers = rotate_3d(points_and_markers)
+        else:
+            frame_name = idx
+            frame = self.data[idx]
+            points = np.array(frame["points"])
+            pixel_vals = np.array(frame["colors"])
+            markers, markers_normalized, segments_labels = [], [], []
+            points_ = np.concatenate((pc_normalize(points)[0], pixel_vals), axis=1)
         
-        points_normalized = points_and_markers[:-8]
-        markers_normalized = points_and_markers[-8:] 
-        # print(len(points_and_markers), len(points_normalized), len(markers_normalized))
+        out = {'frame': frame_name, 'points': points_, 'segments': np.array(segments_labels), 'markers': markers_normalized,  
+                'markers_original':markers, 'points_original': points,
+            #    'weights': weights, 
+                'class': 0}
 
-        downsampled_indices = np.concatenate((np.random.choice(len(points_normalized), self.npoints-len(markers_indices), replace=True), markers_indices))
-
-        # with open("test_repro2.txt", "ab") as f:
-        #     np.savetxt(f, downsampled_indices)
-        #     f.write(b'\n')
-        pointset_downsampled_orig = points[downsampled_indices, :]
-        pointset_downsampled = points_normalized[downsampled_indices, :]
-        pixel_vals = pixel_vals[downsampled_indices, :]
-
-        # markers_indices_sampled = find_indices(markers_normalized, pointset_downsampled)
-
-        segments_labels = []
-        segments_points = []
-        if self.task == 'seg':
-            segments_labels, segments_points = find_segments(markers_normalized, pointset_downsampled, frame['radius'])      
-        
-        weights = np.ones([len(segments_points)], dtype=np.float64)
-        if self.class_weights:
-            num_per_class = np.array([len(segment_points) for segment_points in segments_points], dtype=np.int32)
-            weights = get_class_weights(num_per_class, normalize=True)
-        points = np.concatenate((pointset_downsampled, pixel_vals), axis=1)
-        # print(markers_indices_sampled)
-        out = {'points': points, 'class': 0, 'segments': np.array(segments_labels), 'weights': weights, 'markers': markers_normalized, 'frame': frame_name, 'markers_original':markers, 'points_original': pointset_downsampled_orig}
-        
 
         return out
     

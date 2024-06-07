@@ -16,6 +16,6 @@
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/10000-v1/predictions
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/20000/predictions
 
-
-/interface
-/backend 
+ais-interface-backend/data
+so-open3d.yaml
+ais-interface/app/sample_data.tsx

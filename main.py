@@ -3,11 +3,13 @@ import numpy as np
 import importlib
 import json
 import os
-from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader_ import ScoliosisDataset
+from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader import ScoliosisDataset
 import random
 from tqdm import tqdm
 import sys
-import open3d as o3d
+# import open3d as o3d
+# import faulthandler
+# faulthandler.enable()
 # from gui.seg_vis import visualize_point_cloud
 
 # print("here")
@@ -127,28 +129,22 @@ def find_segments_frame(data, net, device='cpu', landmarks=True, num_part=7):
     colors = points[:, :, 3:]
     points_original = data['points_original']
     target = data['segments']
-    markers = data['markers_original']
+    # markers = data['markers_original']
     label = data['class']
 
 
-    points, target, markers, label = points.float().to(device), target.long().to(device), markers.to(device), label.long().to(device)
+    points, label = points.float().to(device), label.long().to(device)
     points = points.transpose(2, 1)
 
-    vote_pool = torch.zeros(target.size()[0], target.size()[1], num_part).to(device)
+    vote_pool = torch.zeros(points.size()[0], points.size()[2], num_part).to(device)
 
     for _ in range(num_votes):
-        seg_pred, l3_points, l3_xyz, l2_points, l2_xyz, l1_points, l1_xyz = net(points, to_categorical(label, num_classes))
+        seg_pred, _ = net(points, to_categorical(label, num_classes))
         # if num_part == 7:
         #     seg_pred = seg_pred[:, :, [0, 1, 2, 5, 6, 7, 8]]
         vote_pool += seg_pred
     
-    # print(l3_points.size(), l3_xyz.size(), l2_points.size(), l2_xyz.size(), l1_points.size(), l1_xyz.size())
-
-
     points = points.transpose(2, 1).cpu().data.numpy()
-    l3_points = l3_points.transpose(2, 1).cpu().data.numpy()
-    l2_points = l2_points.transpose(2, 1).cpu().data.numpy()
-    l1_points = l1_points.transpose(2, 1).cpu().data.numpy()
 
     seg_pred = vote_pool / num_votes
     cur_pred_val = seg_pred.cpu().data.numpy()
@@ -158,35 +154,28 @@ def find_segments_frame(data, net, device='cpu', landmarks=True, num_part=7):
     if landmarks:
         centers = find_centers(points_original, labels, n=num_part)
 
-    return [{'labels': labels[i].tolist(), 'points': points_original[i].tolist(), 
-             'colors': colors[i].tolist(), 'centers': centers[i], 
-             'markers': markers[i].tolist(), 'targets': target[i].tolist(), 
-             'l3': l3_points[i].tolist(), 'points_norm': points[i].tolist(), 
-             'l2': l2_points[i].tolist(), 'l1': l1_points[i].tolist()} for i in range(len(points))]
+    return [{'labels': labels[i].tolist(), 'centers': centers[i]} for i in range(len(points))]
 
+def find_segments_sequence(sequence, method=''):
 
-def main(args):
-
-    
     # reproducibility
     manual_seed = 0
     random.seed(manual_seed)
     np.random.seed(manual_seed)
     torch.manual_seed(manual_seed)
     torch.cuda.manual_seed_all(manual_seed)
-    def seed_worker(worker_id):
-        worker_seed = torch.initial_seed() % 2**32
-        np.random.seed(worker_seed)
-        random.seed(worker_seed)
+    # def seed_worker(worker_id):
+    #     worker_seed = torch.initial_seed() % 2**32
+    #     np.random.seed(worker_seed)
+    #     random.seed(worker_seed)
 
     g = torch.Generator()
     g.manual_seed(manual_seed)
 
     project_path = '/Users/ghebr/Desktop/MotionAIS'
     pretrained_dir = project_path + '/PointNet2/Pointnet_Pointnet2_pytorch/log/back_segmentation/pointnet2_part_seg_msg_circles/10000/checkpoints'
-    data_path = project_path + '/Data/'
-    method = 'pointnet2_part_seg_msg_circles/10000/middle_points/'
-    sequence_paths = ['Participant23_BD_Libre_Prise01']
+    # data_path = project_path + '/Data/'
+    # method = 'pointnet2_part_seg_msg_circles/10000/middle_points/'
 
     device = 'cpu'
     save = True
@@ -194,61 +183,145 @@ def main(args):
     normal = True
     batch_size = 1
     landmarks = 8
-
     
-    # the full path to the directory with a sub-directory called input including all the input frames
-    sequence_path = args[1]
-    task = args[2] # seg, track, analyze
-
-    output_dir = sequence_path + '/output/' + method + '/'
-    input_dir = sequence_path + '/input/'
-    os.makedirs(output_dir, exist_ok=True)
-    output_files = os.listdir(output_dir)
+    # output_dir = sequence_path + '/results/'
+    # input_dir = sequence_path + '/uploads/'
+    # os.makedirs(output_dir, exist_ok=True)
+    # output_files = os.listdir(output_dir)
     # Check if output files already exist
     outputs = []
-    if len(output_files):
-        for output_file in output_files:
-            output_path = output_dir + output_file
-            with open(output_path) as f:
-                outputs.append(json.load(f))
-    else:
-        # Find segments and landmarks (centers method)
-        Sequence = ScoliosisDataset(root=input_dir, npoints=npoint, augmentation=False, normal_channel=normal, task='seg', mode='inference', num_landmarks=landmarks)
-        sequenceDataLoader = torch.utils.data.DataLoader(Sequence, batch_size=batch_size, shuffle=False, num_workers=4)
-                                                        #  , worker_init_fn=seed_worker, generator=g)
-        # Load the model
-        num_classes = 1
-        num_part = 9
-        model_name = 'pointnet2_part_seg_msg'
-        MODEL = importlib.import_module(model_name)
-        classifier = MODEL.get_model(9, normal_channel=normal, num_points=npoint).to(device)
+    # if len(output_files):
+    #     for output_file in output_files:
+    #         output_path = output_dir + output_file
+    #         with open(output_path) as f:
+                # outputs.append(json.load(f))
+    # else:
+    # Find segments and landmarks (centers method)
+    Sequence = ScoliosisDataset(data=sequence, npoints=npoint, augmentation=False, normal_channel=normal, task='seg', mode='inference')
+    sequenceDataLoader = torch.utils.data.DataLoader(Sequence, batch_size=batch_size, shuffle=False, num_workers=4)
+                                                    #  , worker_init_fn=seed_worker, generator=g)
+    # Load the model
+    num_classes = 1
+    num_part = 9
+    model_name = 'pointnet2_part_seg_msg'
+    MODEL = importlib.import_module(model_name)
+    classifier = MODEL.get_model(9, normal_channel=normal, num_points=npoint).to(device)
 
-        # Load the model parameters
-        checkpoint = torch.load(str(pretrained_dir) + '/best_model.pth', map_location=torch.device(device))
-        classifier.load_state_dict(checkpoint['model_state_dict'])
+    # Load the model parameters
+    checkpoint = torch.load(str(pretrained_dir) + '/best_model.pth', map_location=torch.device(device))
+    classifier.load_state_dict(checkpoint['model_state_dict'])
 
-        with torch.no_grad():
-            for batch_id, data in tqdm(enumerate(sequenceDataLoader), total=len(sequenceDataLoader),
-                                                        smoothing=0.9):
-                # Input frames' names which is used for writing the outout
-                frames = data['frame']
-                output_batch = find_segments_frame(data, classifier, device, num_part=num_part)
-                for output in output_batch:
-                    outputs.append(output)
+    with torch.no_grad():
+        for batch_id, data in tqdm(enumerate(sequenceDataLoader), total=len(sequenceDataLoader),
+                                                    smoothing=0.9):
+            # Input frames' names which is used for writing the outout
+            frames = data['frame']
+            output_batch = find_segments_frame(data, classifier, device, num_part=num_part)
+            for output in output_batch:
+                outputs.append(output)
+            
+            # if save:
+            #     for output, frame in zip(output_batch, frames):
+            #         with open(output_dir + f'{frame[:-4]}.json', 'w') as f:
+            #             json.dump(output, f)
+    print("Done!")
+    return outputs
+
+# def main(args):
+#     sequence = []
+#     path = "/Users/ghebr/Desktop/MotionAIS/ais-interface-backend/data/"
+#     frames = os.listdir(path + "uploads/")
+#     for frame in frames:
+#         frame_path = path + "uploads/" + str(frame)
+#         with open(frame_path) as frame_file:
+#             sequence.append(json.load(frame_file))
+#     outpath = path + "results/"
+#     outputs = find_segments_sequence(sequence)
+#     for output, frame in zip(outputs, frames):
+#         with open(outpath + f'{frame[:-5]}.json', 'w') as f:
+#             json.dump(output, f)
+    
+#     # reproducibility
+#     manual_seed = 0
+#     random.seed(manual_seed)
+#     np.random.seed(manual_seed)
+#     torch.manual_seed(manual_seed)
+#     torch.cuda.manual_seed_all(manual_seed)
+#     def seed_worker(worker_id):
+#         worker_seed = torch.initial_seed() % 2**32
+#         np.random.seed(worker_seed)
+#         random.seed(worker_seed)
+
+#     g = torch.Generator()
+#     g.manual_seed(manual_seed)
+
+#     project_path = '/Users/ghebr/Desktop/MotionAIS'
+#     pretrained_dir = project_path + '/PointNet2/Pointnet_Pointnet2_pytorch/log/back_segmentation/pointnet2_part_seg_msg_circles/10000/checkpoints'
+#     data_path = project_path + '/Data/'
+#     method = 'pointnet2_part_seg_msg_circles/10000/middle_points/'
+#     sequence_paths = ['Participant23_BD_Libre_Prise01']
+
+#     device = 'cpu'
+#     save = True
+#     npoint = 10000
+#     normal = True
+#     batch_size = 1
+#     landmarks = 8
+
+    
+#     # the full path to the directory with a sub-directory called input including all the input frames
+#     sequence_path = args[1]
+#     task = args[2] # seg, track, analyze
+
+#     output_dir = sequence_path + '/output/' + method + '/'
+#     input_dir = sequence_path + '/input/'
+#     os.makedirs(output_dir, exist_ok=True)
+#     output_files = os.listdir(output_dir)
+#     # Check if output files already exist
+#     outputs = []
+#     if len(output_files):
+#         for output_file in output_files:
+#             output_path = output_dir + output_file
+#             with open(output_path) as f:
+#                 outputs.append(json.load(f))
+#     else:
+#         # Find segments and landmarks (centers method)
+#         Sequence = ScoliosisDataset(root=input_dir, npoints=npoint, augmentation=False, normal_channel=normal, task='seg', mode='inference', num_landmarks=landmarks)
+#         sequenceDataLoader = torch.utils.data.DataLoader(Sequence, batch_size=batch_size, shuffle=False, num_workers=4)
+#                                                         #  , worker_init_fn=seed_worker, generator=g)
+#         # Load the model
+#         num_classes = 1
+#         num_part = 9
+#         model_name = 'pointnet2_part_seg_msg'
+#         MODEL = importlib.import_module(model_name)
+#         classifier = MODEL.get_model(9, normal_channel=normal, num_points=npoint).to(device)
+
+#         # Load the model parameters
+#         checkpoint = torch.load(str(pretrained_dir) + '/best_model.pth', map_location=torch.device(device))
+#         classifier.load_state_dict(checkpoint['model_state_dict'])
+
+#         with torch.no_grad():
+#             for batch_id, data in tqdm(enumerate(sequenceDataLoader), total=len(sequenceDataLoader),
+#                                                         smoothing=0.9):
+#                 # Input frames' names which is used for writing the outout
+#                 frames = data['frame']
+#                 output_batch = find_segments_frame(data, classifier, device, num_part=num_part)
+#                 for output in output_batch:
+#                     outputs.append(output)
                 
-                if save:
-                    for output, frame in zip(output_batch, frames):
-                        with open(output_dir + f'{frame[:-4]}.json', 'w') as f:
-                            json.dump(output, f)
-        print("Done!")
-        # Option 1: Visulaize the segments
-        # Option 2: Visualize the landmark
-        # Option 3: Visualize the traajectories
-        n = len(outputs)
-        visualize_sequence_flow([outputs[i]['markers'] for i in range(n)], [outputs[i]['centers'] for i in range(n)], np.array(outputs[0]['points'])[:, :3], np.array(outputs[-1]['points'])[:, :3])
-        # visualize_point_cloud([[results[i]['markers'] for i in range(n)], [results[i]['centers'] for i in range(n)], np.array(results[0]['points'])[:, :3], np.array(results[-1]['points'])[:, :3]], colors=[[0, 1, 0], [1, 0, 0], [0.8, 0.8, 1], [0.8, 1, 0.8]], landmarks=True, offset=50, save_path=res_dir+'vis/')
-        # Option 4: Show the graphs
+#                 if save:
+#                     for output, frame in zip(output_batch, frames):
+#                         with open(output_dir + f'{frame[:-4]}.json', 'w') as f:
+#                             json.dump(output, f)
+#         print("Done!")
+#         # Option 1: Visulaize the segments
+#         # Option 2: Visualize the landmark
+#         # Option 3: Visualize the traajectories
+#         n = len(outputs)
+#         visualize_sequence_flow([outputs[i]['markers'] for i in range(n)], [outputs[i]['centers'] for i in range(n)], np.array(outputs[0]['points'])[:, :3], np.array(outputs[-1]['points'])[:, :3])
+#         # visualize_point_cloud([[results[i]['markers'] for i in range(n)], [results[i]['centers'] for i in range(n)], np.array(results[0]['points'])[:, :3], np.array(results[-1]['points'])[:, :3]], colors=[[0, 1, 0], [1, 0, 0], [0.8, 0.8, 1], [0.8, 1, 0.8]], landmarks=True, offset=50, save_path=res_dir+'vis/')
+#         # Option 4: Show the graphs
 
 
-if __name__ == '__main__':
-    main(sys.argv)
+# if __name__ == '__main__':
+#     main(sys.argv)

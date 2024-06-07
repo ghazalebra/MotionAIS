@@ -1,0 +1,124 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.header {
+  margin-top: 20px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.upload {
+  margin: 20px;
+  padding: 20px;
+  background-color: #55cbb7;
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  width: 80%;
+  max-width: 600px;
+  display: flex;
+}
+
+.content {
+  background-color: #55cbb7;
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  width: 100%;
+  /* width: 1000px; */
+  /* max-width: 3000px; */
+}
+
+.sequence-panel,
+.analysis-panel {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  /* width: 45%; */
+  text-align: center;
+}
+
+/* .sequence-panel {
+  background-color: #e0f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .analysis-panel {
+  background-color: #fff;
+} */
+
+button {
+  background-color: #ec9557;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e4491a;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+.visualization-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.slider {
+  width: 100%;
+  /* margin: px 0; */
+}
+
+.frame-indicator {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 1em;
+  color: #333;
+}
+
+.task-bar {
+  background-color: #55cbb7;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.task-bar input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.task-bar label {
+  margin-right: 10px;
+  font-size: 8px;
+  color: #333;
+}
+
+.task-bar label:hover {
+  cursor: pointer;
+}
