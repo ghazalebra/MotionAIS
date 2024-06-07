@@ -1,0 +1,497 @@
+2023-11-11 19:35:45,268 - Model - INFO - PARAMETER ...
+2023-11-11 19:35:45,268 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=False)
+2023-11-11 19:35:45,268 - Model - INFO - The number of test data is: 588
+2023-11-11 19:37:12,512 - Model - INFO - PARAMETER ...
+2023-11-11 19:37:12,512 - Model - INFO - Namespace(batch_size=4, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=False)
+2023-11-11 19:37:12,513 - Model - INFO - The number of test data is: 588
+2023-11-11 19:39:08,842 - Model - INFO - PARAMETER ...
+2023-11-11 19:39:08,843 - Model - INFO - Namespace(batch_size=4, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=False)
+2023-11-11 19:39:08,843 - Model - INFO - The number of test data is: 588
+2023-11-11 20:01:45,607 - Model - INFO - PARAMETER ...
+2023-11-11 20:01:45,607 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=False)
+2023-11-11 20:01:45,607 - Model - INFO - The number of test data is: 588
+2023-11-11 22:17:53,279 - Model - INFO - PARAMETER ...
+2023-11-11 22:17:53,280 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 22:17:53,280 - Model - INFO - The number of test data is: 588
+2023-11-11 22:24:16,455 - Model - INFO - PARAMETER ...
+2023-11-11 22:24:16,455 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 22:24:16,456 - Model - INFO - The number of test data is: 588
+2023-11-11 22:26:53,470 - Model - INFO - PARAMETER ...
+2023-11-11 22:26:53,470 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 22:26:53,470 - Model - INFO - The number of test data is: 587
+2023-11-11 22:27:46,324 - Model - INFO - PARAMETER ...
+2023-11-11 22:27:46,324 - Model - INFO - Namespace(batch_size=16, gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 22:27:46,324 - Model - INFO - The number of test data is: 587
+2023-11-11 22:31:53,413 - Model - INFO - eval mIoU of Back           0.821319
+2023-11-11 22:31:53,413 - Model - INFO - MSE error of the centers: 0.00006
+2023-11-11 22:31:53,413 - Model - INFO - Average displacement of centers over all segments: 6.34407
+2023-11-11 22:31:53,413 - Model - INFO - Average displacement of centers: 5.7078466, 6.6039267, 6.577075, 6.781775, 8.7601595, 5.4704766, 4.936874, 5.9144397
+2023-11-11 22:31:53,413 - Model - INFO - Accuracy is: 0.98077
+2023-11-11 22:31:53,413 - Model - INFO - Class avg accuracy is: 0.88931
+2023-11-11 22:31:53,413 - Model - INFO - Class avg mIOU is: 0.82132
+2023-11-11 22:31:53,413 - Model - INFO - Inctance avg mIOU is: 0.82132
+2023-11-11 23:42:01,365 - Model - INFO - PARAMETER ...
+2023-11-11 23:42:01,365 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 23:42:01,366 - Model - INFO - The number of test data is: 229
+2023-11-11 23:43:07,554 - Model - INFO - PARAMETER ...
+2023-11-11 23:43:07,554 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 23:43:07,554 - Model - INFO - The number of test data is: 229
+2023-11-11 23:44:48,567 - Model - INFO - eval mIoU of Back           0.614613
+2023-11-11 23:44:48,567 - Model - INFO - MSE error of the centers: 0.00052
+2023-11-11 23:44:48,567 - Model - INFO - Average displacement of centers over all segments: 23.61197
+2023-11-11 23:44:48,567 - Model - INFO - Average displacement of centers: 15.498035, 15.398361, 21.402996, 24.649391, 24.86814, 39.854923
+2023-11-11 23:44:48,567 - Model - INFO - Accuracy is: 0.95460
+2023-11-11 23:44:48,567 - Model - INFO - Class avg accuracy is: 0.60483
+2023-11-11 23:44:48,567 - Model - INFO - Class avg mIOU is: 0.61461
+2023-11-11 23:44:48,567 - Model - INFO - Inctance avg mIOU is: 0.61461
+2023-11-11 23:50:08,289 - Model - INFO - PARAMETER ...
+2023-11-11 23:50:08,289 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-11 23:50:08,289 - Model - INFO - The number of test data is: 229
+2023-11-12 00:54:40,075 - Model - INFO - PARAMETER ...
+2023-11-12 00:54:40,075 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 00:54:40,075 - Model - INFO - The number of test data is: 229
+2023-11-12 00:55:51,040 - Model - INFO - PARAMETER ...
+2023-11-12 00:55:51,040 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 00:55:51,040 - Model - INFO - The number of test data is: 229
+2023-11-12 00:56:02,258 - Model - INFO - PARAMETER ...
+2023-11-12 00:56:02,258 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 00:56:02,258 - Model - INFO - The number of test data is: 229
+2023-11-12 00:58:41,250 - Model - INFO - PARAMETER ...
+2023-11-12 00:58:41,250 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 00:58:41,250 - Model - INFO - The number of test data is: 229
+2023-11-12 00:58:46,130 - Model - INFO - PARAMETER ...
+2023-11-12 00:58:46,130 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 00:58:46,130 - Model - INFO - The number of test data is: 229
+2023-11-12 01:15:54,125 - Model - INFO - PARAMETER ...
+2023-11-12 01:15:54,125 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:15:54,126 - Model - INFO - The number of test data is: 229
+2023-11-12 01:16:25,363 - Model - INFO - PARAMETER ...
+2023-11-12 01:16:25,363 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:16:25,363 - Model - INFO - The number of test data is: 229
+2023-11-12 01:18:16,506 - Model - INFO - PARAMETER ...
+2023-11-12 01:18:16,506 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:18:16,506 - Model - INFO - The number of test data is: 229
+2023-11-12 01:19:24,688 - Model - INFO - PARAMETER ...
+2023-11-12 01:19:24,688 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:19:24,688 - Model - INFO - The number of test data is: 229
+2023-11-12 01:20:42,193 - Model - INFO - PARAMETER ...
+2023-11-12 01:20:42,193 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:20:42,193 - Model - INFO - The number of test data is: 229
+2023-11-12 01:22:36,191 - Model - INFO - PARAMETER ...
+2023-11-12 01:22:36,191 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:22:36,191 - Model - INFO - The number of test data is: 229
+2023-11-12 01:24:27,555 - Model - INFO - PARAMETER ...
+2023-11-12 01:24:27,555 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:24:27,556 - Model - INFO - The number of test data is: 229
+2023-11-12 01:27:56,009 - Model - INFO - PARAMETER ...
+2023-11-12 01:27:56,010 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:27:56,010 - Model - INFO - The number of test data is: 229
+2023-11-12 01:30:34,464 - Model - INFO - PARAMETER ...
+2023-11-12 01:30:34,464 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:30:34,464 - Model - INFO - The number of test data is: 229
+2023-11-12 01:33:12,998 - Model - INFO - PARAMETER ...
+2023-11-12 01:33:12,998 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:33:12,999 - Model - INFO - The number of test data is: 229
+2023-11-12 01:34:13,622 - Model - INFO - PARAMETER ...
+2023-11-12 01:34:13,622 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 01:34:13,623 - Model - INFO - The number of test data is: 229
+2023-11-12 01:36:03,392 - Model - INFO - eval mIoU of Back           0.397396
+2023-11-12 01:36:03,392 - Model - INFO - MSE error of the centers: 0.00052
+2023-11-12 01:36:03,392 - Model - INFO - Average displacement of centers over all segments: 23.61197
+2023-11-12 01:36:03,393 - Model - INFO - Average displacement of centers: 15.498035, 15.398361, 21.402996, 24.649391, 24.86814, 39.854923
+2023-11-12 01:36:03,393 - Model - INFO - Accuracy is: 0.03331
+2023-11-12 01:36:03,393 - Model - INFO - Class avg accuracy is: nan
+2023-11-12 01:36:03,393 - Model - INFO - Class avg mIOU is: 0.39740
+2023-11-12 01:36:03,393 - Model - INFO - Inctance avg mIOU is: 0.39740
+2023-11-12 14:50:45,408 - Model - INFO - PARAMETER ...
+2023-11-12 14:50:45,408 - Model - INFO - Namespace(batch_size=16, data='test-auto-6', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 14:50:45,408 - Model - INFO - The number of test data is: 76
+2023-11-12 17:46:02,327 - Model - INFO - PARAMETER ...
+2023-11-12 17:46:02,328 - Model - INFO - Namespace(batch_size=4, data='test', gpu='0', landmarks=6, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-12 17:46:02,328 - Model - INFO - The number of test data is: 587
+2023-11-13 13:15:02,354 - Model - INFO - PARAMETER ...
+2023-11-13 13:15:02,354 - Model - INFO - Namespace(batch_size=8, data='test-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:15:02,354 - Model - INFO - The number of test data is: 464
+2023-11-13 13:16:45,151 - Model - INFO - PARAMETER ...
+2023-11-13 13:16:45,151 - Model - INFO - Namespace(batch_size=8, data='test-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:16:45,151 - Model - INFO - The number of test data is: 464
+2023-11-13 13:17:58,793 - Model - INFO - PARAMETER ...
+2023-11-13 13:17:58,794 - Model - INFO - Namespace(batch_size=8, data='test-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:17:58,794 - Model - INFO - The number of test data is: 464
+2023-11-13 13:21:15,351 - Model - INFO - eval mIoU of Back           0.617429
+2023-11-13 13:21:15,353 - Model - INFO - MSE error of the centers: nan
+2023-11-13 13:21:15,353 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 13:21:15,353 - Model - INFO - Average displacement of centers: nan, 14.183485, nan, 9.112932, 13.196754, nan, nan, 300.02478
+2023-11-13 13:21:15,353 - Model - INFO - Accuracy is: 0.93624
+2023-11-13 13:21:15,353 - Model - INFO - Class avg accuracy is: 0.66177
+2023-11-13 13:21:15,354 - Model - INFO - Class avg mIOU is: 0.61743
+2023-11-13 13:21:15,354 - Model - INFO - Inctance avg mIOU is: 0.61743
+2023-11-13 13:28:12,475 - Model - INFO - PARAMETER ...
+2023-11-13 13:28:12,475 - Model - INFO - Namespace(batch_size=8, data='test-pt8-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:28:12,476 - Model - INFO - The number of test data is: 300
+2023-11-13 13:29:56,728 - Model - INFO - PARAMETER ...
+2023-11-13 13:29:56,728 - Model - INFO - Namespace(batch_size=8, data='test-pt8-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:29:56,728 - Model - INFO - The number of test data is: 150
+2023-11-13 13:31:08,416 - Model - INFO - eval mIoU of Back           0.812462
+2023-11-13 13:31:08,416 - Model - INFO - MSE error of the centers: 0.00004
+2023-11-13 13:31:08,416 - Model - INFO - Average displacement of centers over all segments: 6.22031
+2023-11-13 13:31:08,416 - Model - INFO - Average displacement of centers: 4.4062805, 7.0369687, 6.6179056, 6.4218516, 9.484764, 5.3185344, 4.8643084, 5.611908
+2023-11-13 13:31:08,416 - Model - INFO - Accuracy is: 0.98211
+2023-11-13 13:31:08,416 - Model - INFO - Class avg accuracy is: 0.88736
+2023-11-13 13:31:08,416 - Model - INFO - Class avg mIOU is: 0.81246
+2023-11-13 13:31:08,416 - Model - INFO - Inctance avg mIOU is: 0.81246
+2023-11-13 13:47:50,641 - Model - INFO - PARAMETER ...
+2023-11-13 13:47:50,641 - Model - INFO - Namespace(batch_size=8, data='test-pt6-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:48:08,750 - Model - INFO - PARAMETER ...
+2023-11-13 13:48:08,750 - Model - INFO - Namespace(batch_size=8, data='test-pt6-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:48:08,750 - Model - INFO - The number of test data is: 152
+2023-11-13 13:49:20,693 - Model - INFO - eval mIoU of Back           0.550332
+2023-11-13 13:49:20,693 - Model - INFO - MSE error of the centers: 0.00024
+2023-11-13 13:49:20,694 - Model - INFO - Average displacement of centers over all segments: 18.29961
+2023-11-13 13:49:20,694 - Model - INFO - Average displacement of centers: 15.540842, 11.024566, 9.912692, 8.628977, 21.587488, 43.402462, 25.801956, 10.497925
+2023-11-13 13:49:20,694 - Model - INFO - Accuracy is: 0.93864
+2023-11-13 13:49:20,694 - Model - INFO - Class avg accuracy is: 0.62185
+2023-11-13 13:49:20,694 - Model - INFO - Class avg mIOU is: 0.55033
+2023-11-13 13:49:20,694 - Model - INFO - Inctance avg mIOU is: 0.55033
+2023-11-13 13:52:29,000 - Model - INFO - PARAMETER ...
+2023-11-13 13:52:29,000 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:52:29,000 - Model - INFO - The number of test data is: 162
+2023-11-13 13:53:50,042 - Model - INFO - eval mIoU of Back           0.501148
+2023-11-13 13:53:50,042 - Model - INFO - MSE error of the centers: nan
+2023-11-13 13:53:50,042 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 13:53:50,042 - Model - INFO - Average displacement of centers: nan, 23.365479, nan, 12.015807, 8.63379, nan, nan, 844.22626
+2023-11-13 13:53:50,042 - Model - INFO - Accuracy is: 0.89159
+2023-11-13 13:53:50,042 - Model - INFO - Class avg accuracy is: 0.61004
+2023-11-13 13:53:50,042 - Model - INFO - Class avg mIOU is: 0.50115
+2023-11-13 13:53:50,042 - Model - INFO - Inctance avg mIOU is: 0.50115
+2023-11-13 13:59:31,223 - Model - INFO - PARAMETER ...
+2023-11-13 13:59:31,223 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 13:59:31,224 - Model - INFO - The number of test data is: 160
+2023-11-13 14:00:47,482 - Model - INFO - eval mIoU of Back           0.634461
+2023-11-13 14:00:47,482 - Model - INFO - MSE error of the centers: nan
+2023-11-13 14:00:47,482 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 14:00:47,482 - Model - INFO - Average displacement of centers: nan, 17.969242, nan, 8.885292, 8.721506, nan, nan, 23.146608
+2023-11-13 14:00:47,482 - Model - INFO - Accuracy is: 0.95988
+2023-11-13 14:00:47,482 - Model - INFO - Class avg accuracy is: 0.75164
+2023-11-13 14:00:47,482 - Model - INFO - Class avg mIOU is: 0.63446
+2023-11-13 14:00:47,482 - Model - INFO - Inctance avg mIOU is: 0.63446
+2023-11-13 14:04:09,513 - Model - INFO - PARAMETER ...
+2023-11-13 14:04:09,513 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:04:09,513 - Model - INFO - The number of test data is: 160
+2023-11-13 14:05:25,767 - Model - INFO - eval mIoU of Back           0.634461
+2023-11-13 14:05:25,767 - Model - INFO - MSE error of the centers: nan
+2023-11-13 14:05:25,767 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 14:05:25,767 - Model - INFO - Average displacement of centers: nan, 17.969242, nan, 8.885292, 8.721506, nan, nan, 23.146608
+2023-11-13 14:05:25,767 - Model - INFO - Accuracy is: 0.95988
+2023-11-13 14:05:25,767 - Model - INFO - Class avg accuracy is: 0.75164
+2023-11-13 14:05:25,767 - Model - INFO - Class avg mIOU is: 0.63446
+2023-11-13 14:05:25,767 - Model - INFO - Inctance avg mIOU is: 0.63446
+2023-11-13 14:07:13,012 - Model - INFO - PARAMETER ...
+2023-11-13 14:07:13,012 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:07:13,012 - Model - INFO - The number of test data is: 160
+2023-11-13 14:08:24,005 - Model - INFO - PARAMETER ...
+2023-11-13 14:08:24,005 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:08:24,006 - Model - INFO - The number of test data is: 160
+2023-11-13 14:09:40,346 - Model - INFO - eval mIoU of Back           0.634461
+2023-11-13 14:09:40,346 - Model - INFO - MSE error of the centers: nan
+2023-11-13 14:09:40,346 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 14:09:40,346 - Model - INFO - Average displacement of centers: nan, 17.969242, nan, 8.885292, 8.721506, nan, nan, 23.146608
+2023-11-13 14:09:40,346 - Model - INFO - Accuracy is: 0.95988
+2023-11-13 14:09:40,346 - Model - INFO - Class avg accuracy is: 0.75164
+2023-11-13 14:09:40,347 - Model - INFO - Class avg mIOU is: 0.63446
+2023-11-13 14:09:40,347 - Model - INFO - Inctance avg mIOU is: 0.63446
+2023-11-13 14:11:45,409 - Model - INFO - PARAMETER ...
+2023-11-13 14:11:45,409 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:11:45,409 - Model - INFO - The number of test data is: 160
+2023-11-13 14:12:32,084 - Model - INFO - PARAMETER ...
+2023-11-13 14:12:32,084 - Model - INFO - Namespace(batch_size=8, data='test-pt3-auto-8', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:12:32,084 - Model - INFO - The number of test data is: 160
+2023-11-13 14:15:31,018 - Model - INFO - PARAMETER ...
+2023-11-13 14:15:31,018 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:15:31,018 - Model - INFO - The number of test data is: 143
+2023-11-13 14:16:39,936 - Model - INFO - eval mIoU of Back           0.687194
+2023-11-13 14:16:39,936 - Model - INFO - MSE error of the centers: 0.00011
+2023-11-13 14:16:39,936 - Model - INFO - Average displacement of centers over all segments: 9.63157
+2023-11-13 14:16:39,936 - Model - INFO - Average displacement of centers: 9.202041, 11.764041, 15.879991, 7.51101, 7.973335, 8.069449, 6.334382, 10.318316
+2023-11-13 14:16:39,936 - Model - INFO - Accuracy is: 0.96123
+2023-11-13 14:16:39,936 - Model - INFO - Class avg accuracy is: 0.80696
+2023-11-13 14:16:39,936 - Model - INFO - Class avg mIOU is: 0.68719
+2023-11-13 14:16:39,936 - Model - INFO - Inctance avg mIOU is: 0.68719
+2023-11-13 14:23:51,321 - Model - INFO - PARAMETER ...
+2023-11-13 14:23:51,321 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:23:51,321 - Model - INFO - The number of test data is: 290
+2023-11-13 14:25:56,296 - Model - INFO - eval mIoU of Back           0.603723
+2023-11-13 14:25:56,296 - Model - INFO - MSE error of the centers: nan
+2023-11-13 14:25:56,296 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 14:25:56,296 - Model - INFO - Average displacement of centers: nan, 9.526629, 13.013065, 16.105305, 13.064431, 15.384152, 8.554993, 9.409098
+2023-11-13 14:25:56,296 - Model - INFO - Accuracy is: 0.95611
+2023-11-13 14:25:56,296 - Model - INFO - Class avg accuracy is: 0.72630
+2023-11-13 14:25:56,296 - Model - INFO - Class avg mIOU is: 0.60372
+2023-11-13 14:25:56,296 - Model - INFO - Inctance avg mIOU is: 0.60372
+2023-11-13 14:36:14,120 - Model - INFO - PARAMETER ...
+2023-11-13 14:36:14,120 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:36:14,120 - Model - INFO - The number of test data is: 290
+2023-11-13 14:59:20,863 - Model - INFO - PARAMETER ...
+2023-11-13 14:59:20,863 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 14:59:20,863 - Model - INFO - The number of test data is: 220
+2023-11-13 15:01:00,227 - Model - INFO - eval mIoU of Back           0.590162
+2023-11-13 15:01:00,227 - Model - INFO - MSE error of the centers: nan
+2023-11-13 15:01:00,227 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 15:01:00,227 - Model - INFO - Average displacement of centers: nan, 8.675689, 12.94603, 16.570438, 12.684358, 17.056469, 9.60865, 9.706991
+2023-11-13 15:01:00,228 - Model - INFO - Accuracy is: 0.95408
+2023-11-13 15:01:00,228 - Model - INFO - Class avg accuracy is: 0.71786
+2023-11-13 15:01:00,228 - Model - INFO - Class avg mIOU is: 0.59016
+2023-11-13 15:01:00,228 - Model - INFO - Inctance avg mIOU is: 0.59016
+2023-11-13 15:01:26,168 - Model - INFO - PARAMETER ...
+2023-11-13 15:01:26,168 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 15:01:26,168 - Model - INFO - The number of test data is: 220
+2023-11-13 15:01:45,898 - Model - INFO - PARAMETER ...
+2023-11-13 15:01:45,898 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 15:01:45,898 - Model - INFO - The number of test data is: 220
+2023-11-13 15:03:26,908 - Model - INFO - eval mIoU of Back           0.576597
+2023-11-13 15:03:26,908 - Model - INFO - MSE error of the centers: nan
+2023-11-13 15:03:26,908 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 15:03:26,908 - Model - INFO - Average displacement of centers: nan, 9.739605, 13.220281, 16.949724, 13.421285, 17.655632, 9.602955, 10.204141
+2023-11-13 15:03:26,908 - Model - INFO - Accuracy is: 0.95258
+2023-11-13 15:03:26,908 - Model - INFO - Class avg accuracy is: 0.70055
+2023-11-13 15:03:26,908 - Model - INFO - Class avg mIOU is: 0.57660
+2023-11-13 15:03:26,908 - Model - INFO - Inctance avg mIOU is: 0.57660
+2023-11-13 15:04:02,753 - Model - INFO - PARAMETER ...
+2023-11-13 15:04:02,753 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 15:04:02,753 - Model - INFO - The number of test data is: 214
+2023-11-13 15:05:40,288 - Model - INFO - eval mIoU of Back           0.612998
+2023-11-13 15:05:40,288 - Model - INFO - MSE error of the centers: nan
+2023-11-13 15:05:40,288 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 15:05:40,288 - Model - INFO - Average displacement of centers: nan, 10.190975, 13.021009, 16.068062, 13.611088, 13.695503, 7.6608615, 9.200061
+2023-11-13 15:05:40,288 - Model - INFO - Accuracy is: 0.95752
+2023-11-13 15:05:40,288 - Model - INFO - Class avg accuracy is: 0.73257
+2023-11-13 15:05:40,288 - Model - INFO - Class avg mIOU is: 0.61300
+2023-11-13 15:05:40,288 - Model - INFO - Inctance avg mIOU is: 0.61300
+2023-11-13 15:07:12,068 - Model - INFO - PARAMETER ...
+2023-11-13 15:07:12,068 - Model - INFO - Namespace(batch_size=8, data='test-auto-8-seen-pt24', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True)
+2023-11-13 15:07:12,068 - Model - INFO - The number of test data is: 216
+2023-11-13 15:08:50,834 - Model - INFO - eval mIoU of Back           0.637300
+2023-11-13 15:08:50,834 - Model - INFO - MSE error of the centers: nan
+2023-11-13 15:08:50,834 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 15:08:50,834 - Model - INFO - Average displacement of centers: nan, 9.689104, 12.506048, 14.598979, 12.960844, 12.724147, 7.042673, 8.287947
+2023-11-13 15:08:50,834 - Model - INFO - Accuracy is: 0.96010
+2023-11-13 15:08:50,834 - Model - INFO - Class avg accuracy is: 0.75483
+2023-11-13 15:08:50,834 - Model - INFO - Class avg mIOU is: 0.63730
+2023-11-13 15:08:50,834 - Model - INFO - Inctance avg mIOU is: 0.63730
+2023-11-13 16:05:03,300 - Model - INFO - PARAMETER ...
+2023-11-13 16:05:03,300 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant10/autocorrection/Prise01/')
+2023-11-13 16:05:03,300 - Model - INFO - The number of test data is: 76
+2023-11-13 16:05:10,882 - Model - INFO - PARAMETER ...
+2023-11-13 16:05:10,883 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant10/autocorrection/Prise01/')
+2023-11-13 16:05:10,883 - Model - INFO - The number of test data is: 76
+2023-11-13 16:05:56,811 - Model - INFO - eval mIoU of Back           0.356486
+2023-11-13 16:05:56,812 - Model - INFO - MSE error of the centers: 0.08244
+2023-11-13 16:05:56,812 - Model - INFO - Average displacement of centers over all segments: 501.37195
+2023-11-13 16:05:56,812 - Model - INFO - Average displacement of centers: 26.239273, 34.834507, 44.991253, 1873.1826, 1891.6863, 48.525764, 41.242466, 50.273483
+2023-11-13 16:05:56,812 - Model - INFO - Accuracy is: 0.81679
+2023-11-13 16:05:56,812 - Model - INFO - Class avg accuracy is: nan
+2023-11-13 16:05:56,812 - Model - INFO - Class avg mIOU is: 0.35649
+2023-11-13 16:05:56,812 - Model - INFO - Inctance avg mIOU is: 0.35649
+2023-11-13 16:06:20,709 - Model - INFO - PARAMETER ...
+2023-11-13 16:06:20,709 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant09/autocorrection/Prise01/')
+2023-11-13 16:06:20,710 - Model - INFO - The number of test data is: 71
+2023-11-13 16:07:03,757 - Model - INFO - eval mIoU of Back           0.474490
+2023-11-13 16:07:03,757 - Model - INFO - MSE error of the centers: nan
+2023-11-13 16:07:03,757 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 16:07:03,757 - Model - INFO - Average displacement of centers: 21.378428, 89.3191, 38.757927, nan, nan, 16.4717, 55.515453, 36.855988
+2023-11-13 16:07:03,757 - Model - INFO - Accuracy is: 0.87063
+2023-11-13 16:07:03,757 - Model - INFO - Class avg accuracy is: nan
+2023-11-13 16:07:03,757 - Model - INFO - Class avg mIOU is: 0.47449
+2023-11-13 16:07:03,757 - Model - INFO - Inctance avg mIOU is: 0.47449
+2023-11-13 16:07:23,086 - Model - INFO - PARAMETER ...
+2023-11-13 16:07:23,086 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant12/autocorrection/Prise01/')
+2023-11-13 16:07:23,088 - Model - INFO - The number of test data is: 82
+2023-11-13 16:08:11,674 - Model - INFO - eval mIoU of Back           0.448655
+2023-11-13 16:08:11,674 - Model - INFO - MSE error of the centers: 0.08312
+2023-11-13 16:08:11,674 - Model - INFO - Average displacement of centers over all segments: 439.44427
+2023-11-13 16:08:11,674 - Model - INFO - Average displacement of centers: 25.189186, 13.711628, 24.64809, 1681.4673, 1682.3312, 38.16568, 15.808835, 34.232388
+2023-11-13 16:08:11,674 - Model - INFO - Accuracy is: 0.84187
+2023-11-13 16:08:11,674 - Model - INFO - Class avg accuracy is: nan
+2023-11-13 16:08:11,674 - Model - INFO - Class avg mIOU is: 0.44866
+2023-11-13 16:08:11,674 - Model - INFO - Inctance avg mIOU is: 0.44866
+2023-11-13 16:16:19,315 - Model - INFO - PARAMETER ...
+2023-11-13 16:16:19,315 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/autocorrection/Prise01/')
+2023-11-13 16:16:19,315 - Model - INFO - The number of test data is: 74
+2023-11-13 16:17:00,215 - Model - INFO - eval mIoU of Back           0.506708
+2023-11-13 16:17:00,215 - Model - INFO - MSE error of the centers: nan
+2023-11-13 16:17:00,215 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 16:17:00,215 - Model - INFO - Average displacement of centers: nan, 8.767009, 14.136495, 19.99368, 13.856217, 22.52481, 12.453949, 13.02954
+2023-11-13 16:17:00,215 - Model - INFO - Accuracy is: 0.94354
+2023-11-13 16:17:00,216 - Model - INFO - Class avg accuracy is: 0.63587
+2023-11-13 16:17:00,216 - Model - INFO - Class avg mIOU is: 0.50671
+2023-11-13 16:17:00,216 - Model - INFO - Inctance avg mIOU is: 0.50671
+2023-11-13 16:18:14,567 - Model - INFO - PARAMETER ...
+2023-11-13 16:18:14,567 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/autocorrection/Prise02/')
+2023-11-13 16:18:14,568 - Model - INFO - The number of test data is: 76
+2023-11-13 16:18:56,985 - Model - INFO - eval mIoU of Back           0.580664
+2023-11-13 16:18:56,985 - Model - INFO - MSE error of the centers: nan
+2023-11-13 16:18:56,985 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-13 16:18:56,985 - Model - INFO - Average displacement of centers: nan, 7.881938, 12.145914, 16.186626, 12.001697, 20.367466, 10.320361, 9.780497
+2023-11-13 16:18:56,985 - Model - INFO - Accuracy is: 0.95174
+2023-11-13 16:18:56,985 - Model - INFO - Class avg accuracy is: 0.71108
+2023-11-13 16:18:56,985 - Model - INFO - Class avg mIOU is: 0.58066
+2023-11-13 16:18:56,985 - Model - INFO - Inctance avg mIOU is: 0.58066
+2023-11-13 16:19:43,035 - Model - INFO - PARAMETER ...
+2023-11-13 16:19:43,036 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant19/autocorrection/Prise02/')
+2023-11-13 16:19:43,037 - Model - INFO - The number of test data is: 74
+2023-11-13 16:19:59,376 - Model - INFO - PARAMETER ...
+2023-11-13 16:19:59,376 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant19/autocorrection/Prise01/')
+2023-11-13 16:19:59,377 - Model - INFO - The number of test data is: 64
+2023-11-13 16:20:36,719 - Model - INFO - eval mIoU of Back           0.533704
+2023-11-13 16:20:36,719 - Model - INFO - MSE error of the centers: 0.00044
+2023-11-13 16:20:36,719 - Model - INFO - Average displacement of centers over all segments: 20.82628
+2023-11-13 16:20:36,719 - Model - INFO - Average displacement of centers: 18.947426, 9.843038, 20.481651, 12.527894, 16.528917, 45.127853, 36.331524, 6.8219743
+2023-11-13 16:20:36,719 - Model - INFO - Accuracy is: 0.93744
+2023-11-13 16:20:36,719 - Model - INFO - Class avg accuracy is: 0.65215
+2023-11-13 16:20:36,719 - Model - INFO - Class avg mIOU is: 0.53370
+2023-11-13 16:20:36,719 - Model - INFO - Inctance avg mIOU is: 0.53370
+2023-11-14 20:39:04,131 - Model - INFO - PARAMETER ...
+2023-11-14 20:39:04,131 - Model - INFO - Namespace(batch_size=16, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='')
+2023-11-14 20:39:04,131 - Model - INFO - The number of test data is: 512
+2023-11-14 20:42:45,401 - Model - INFO - eval mIoU of Back           0.289989
+2023-11-14 20:42:45,401 - Model - INFO - MSE error of the centers: 0.00010
+2023-11-14 20:42:45,401 - Model - INFO - Average displacement of centers over all segments: 8.72187
+2023-11-14 20:42:45,401 - Model - INFO - Average displacement of centers: 8.145043, 8.112471, 8.822311, 7.287842, 10.557092, 10.964137, 8.384075, 7.501982
+2023-11-14 20:42:45,401 - Model - INFO - Accuracy is: 0.67794
+2023-11-14 20:42:45,401 - Model - INFO - Class avg accuracy is: 0.32850
+2023-11-14 20:42:45,401 - Model - INFO - Class avg mIOU is: 0.28999
+2023-11-14 20:42:45,401 - Model - INFO - Inctance avg mIOU is: 0.28999
+2023-11-24 13:16:14,710 - Model - INFO - PARAMETER ...
+2023-11-24 13:16:14,710 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant08/BD/Libre/Prise01/')
+2023-11-24 13:19:21,000 - Model - INFO - PARAMETER ...
+2023-11-24 13:19:21,000 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant08/BD/Libre/Prise01/')
+2023-11-24 13:19:21,000 - Model - INFO - The number of test data is: 82
+2023-11-24 13:20:06,655 - Model - INFO - eval mIoU of Back           0.314047
+2023-11-24 13:20:06,655 - Model - INFO - MSE error of the centers: 0.00002
+2023-11-24 13:20:06,655 - Model - INFO - Average displacement of centers over all segments: 5.63690
+2023-11-24 13:20:06,655 - Model - INFO - Average displacement of centers: 4.959713, 6.1920185, 6.18844, 6.429698, 7.786754, 4.176906, 3.7911332, 5.5705576
+2023-11-24 13:20:06,655 - Model - INFO - Accuracy is: 0.69135
+2023-11-24 13:20:06,655 - Model - INFO - Class avg accuracy is: 0.35435
+2023-11-24 13:20:06,655 - Model - INFO - Class avg mIOU is: 0.31405
+2023-11-24 13:20:06,655 - Model - INFO - Inctance avg mIOU is: 0.31405
+2023-11-24 13:21:32,230 - Model - INFO - PARAMETER ...
+2023-11-24 13:21:32,230 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant23/BD/Libre/Prise01/')
+2023-11-24 13:21:32,231 - Model - INFO - The number of test data is: 76
+2023-11-24 13:22:15,977 - Model - INFO - eval mIoU of Back           0.371287
+2023-11-24 13:22:15,977 - Model - INFO - MSE error of the centers: 0.00002
+2023-11-24 13:22:15,977 - Model - INFO - Average displacement of centers over all segments: 6.98358
+2023-11-24 13:22:15,977 - Model - INFO - Average displacement of centers: 9.401486, 9.191405, 7.481888, 4.9516993, 4.7573457, 6.459891, 5.275626, 8.349307
+2023-11-24 13:22:15,977 - Model - INFO - Accuracy is: 0.65443
+2023-11-24 13:22:15,977 - Model - INFO - Class avg accuracy is: 0.41953
+2023-11-24 13:22:15,977 - Model - INFO - Class avg mIOU is: 0.37129
+2023-11-24 13:22:15,977 - Model - INFO - Inctance avg mIOU is: 0.37129
+2023-11-24 13:22:36,734 - Model - INFO - PARAMETER ...
+2023-11-24 13:22:36,734 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant23/BD/Libre/Prise02/')
+2023-11-24 13:22:36,735 - Model - INFO - The number of test data is: 73
+2023-11-24 13:23:19,807 - Model - INFO - eval mIoU of Back           0.362489
+2023-11-24 13:23:19,807 - Model - INFO - MSE error of the centers: 0.00002
+2023-11-24 13:23:19,807 - Model - INFO - Average displacement of centers over all segments: 6.66281
+2023-11-24 13:23:19,807 - Model - INFO - Average displacement of centers: 9.640917, 7.4831853, 7.477762, 4.539873, 4.3766184, 6.451543, 5.048223, 8.284348
+2023-11-24 13:23:19,807 - Model - INFO - Accuracy is: 0.65808
+2023-11-24 13:23:19,807 - Model - INFO - Class avg accuracy is: 0.41118
+2023-11-24 13:23:19,807 - Model - INFO - Class avg mIOU is: 0.36249
+2023-11-24 13:23:19,808 - Model - INFO - Inctance avg mIOU is: 0.36249
+2023-11-24 13:28:03,244 - Model - INFO - PARAMETER ...
+2023-11-24 13:28:03,244 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant23/autocorrection/Prise01/')
+2023-11-24 13:28:03,244 - Model - INFO - The number of test data is: 71
+2023-11-24 13:28:43,376 - Model - INFO - eval mIoU of Back           0.249306
+2023-11-24 13:28:43,376 - Model - INFO - MSE error of the centers: 0.00014
+2023-11-24 13:28:43,376 - Model - INFO - Average displacement of centers over all segments: 10.79480
+2023-11-24 13:28:43,376 - Model - INFO - Average displacement of centers: 9.630342, 13.247741, 17.970736, 9.859542, 10.540654, 7.662553, 6.338824, 11.108012
+2023-11-24 13:28:43,376 - Model - INFO - Accuracy is: 0.64078
+2023-11-24 13:28:43,376 - Model - INFO - Class avg accuracy is: 0.29379
+2023-11-24 13:28:43,376 - Model - INFO - Class avg mIOU is: 0.24931
+2023-11-24 13:28:43,376 - Model - INFO - Inctance avg mIOU is: 0.24931
+2023-11-24 13:28:50,524 - Model - INFO - PARAMETER ...
+2023-11-24 13:28:50,524 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant23/autocorrection/Prise02/')
+2023-11-24 13:28:50,525 - Model - INFO - The number of test data is: 72
+2023-11-24 13:29:31,601 - Model - INFO - eval mIoU of Back           0.270024
+2023-11-24 13:29:31,601 - Model - INFO - MSE error of the centers: 0.00008
+2023-11-24 13:29:31,601 - Model - INFO - Average displacement of centers over all segments: 8.60100
+2023-11-24 13:29:31,601 - Model - INFO - Average displacement of centers: 8.80357, 10.489764, 13.98973, 5.9062634, 5.599609, 8.470158, 6.220914, 9.327969
+2023-11-24 13:29:31,601 - Model - INFO - Accuracy is: 0.65477
+2023-11-24 13:29:31,601 - Model - INFO - Class avg accuracy is: 0.31358
+2023-11-24 13:29:31,601 - Model - INFO - Class avg mIOU is: 0.27002
+2023-11-24 13:29:31,601 - Model - INFO - Inctance avg mIOU is: 0.27002
+2023-11-24 13:29:38,089 - Model - INFO - PARAMETER ...
+2023-11-24 13:29:38,089 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant23/autocorrection/Prise03/')
+2023-11-24 13:29:38,090 - Model - INFO - The number of test data is: 75
+2023-11-24 13:30:20,160 - Model - INFO - eval mIoU of Back           0.261197
+2023-11-24 13:30:20,160 - Model - INFO - MSE error of the centers: 0.00021
+2023-11-24 13:30:20,160 - Model - INFO - Average displacement of centers over all segments: 13.73247
+2023-11-24 13:30:20,160 - Model - INFO - Average displacement of centers: 10.757219, 20.97935, 13.621378, 9.960496, 6.854782, 11.597109, 15.509424, 20.579988
+2023-11-24 13:30:20,160 - Model - INFO - Accuracy is: 0.65975
+2023-11-24 13:30:20,160 - Model - INFO - Class avg accuracy is: 0.30597
+2023-11-24 13:30:20,160 - Model - INFO - Class avg mIOU is: 0.26120
+2023-11-24 13:30:20,160 - Model - INFO - Inctance avg mIOU is: 0.26120
+2023-11-24 13:32:46,184 - Model - INFO - PARAMETER ...
+2023-11-24 13:32:46,184 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant08/BD/Libre/Prise02/')
+2023-11-24 13:32:46,184 - Model - INFO - The number of test data is: 74
+2023-11-24 13:33:27,689 - Model - INFO - eval mIoU of Back           0.324583
+2023-11-24 13:33:27,689 - Model - INFO - MSE error of the centers: 0.00022
+2023-11-24 13:33:27,689 - Model - INFO - Average displacement of centers over all segments: 7.03647
+2023-11-24 13:33:27,689 - Model - INFO - Average displacement of centers: 10.539677, 7.007305, 8.079293, 6.547883, 7.9738054, 5.0511456, 5.0318174, 6.060811
+2023-11-24 13:33:27,689 - Model - INFO - Accuracy is: 0.68227
+2023-11-24 13:33:27,689 - Model - INFO - Class avg accuracy is: 0.36674
+2023-11-24 13:33:27,689 - Model - INFO - Class avg mIOU is: 0.32458
+2023-11-24 13:33:27,689 - Model - INFO - Inctance avg mIOU is: 0.32458
+2023-11-24 13:43:18,529 - Model - INFO - PARAMETER ...
+2023-11-24 13:43:18,529 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/BD/Libre/Prise02/')
+2023-11-24 13:43:18,529 - Model - INFO - The number of test data is: 73
+2023-11-24 13:44:01,591 - Model - INFO - eval mIoU of Back           0.375406
+2023-11-24 13:44:01,591 - Model - INFO - MSE error of the centers: 0.00002
+2023-11-24 13:44:01,591 - Model - INFO - Average displacement of centers over all segments: 6.33457
+2023-11-24 13:44:01,591 - Model - INFO - Average displacement of centers: 6.4879236, 6.3164573, 10.431026, 5.8736243, 6.6234474, 4.8002224, 5.4027295, 4.741136
+2023-11-24 13:44:01,591 - Model - INFO - Accuracy is: 0.63507
+2023-11-24 13:44:01,591 - Model - INFO - Class avg accuracy is: 0.42976
+2023-11-24 13:44:01,591 - Model - INFO - Class avg mIOU is: 0.37541
+2023-11-24 13:44:01,591 - Model - INFO - Inctance avg mIOU is: 0.37541
+2023-11-24 13:48:08,687 - Model - INFO - PARAMETER ...
+2023-11-24 13:48:08,687 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/BD/Libre/Prise01/')
+2023-11-24 13:48:08,687 - Model - INFO - The number of test data is: 70
+2023-11-24 13:48:50,245 - Model - INFO - eval mIoU of Back           0.363723
+2023-11-24 13:48:50,245 - Model - INFO - MSE error of the centers: 0.00002
+2023-11-24 13:48:50,245 - Model - INFO - Average displacement of centers over all segments: 6.56905
+2023-11-24 13:48:50,245 - Model - INFO - Average displacement of centers: 7.717588, 6.067014, 10.351787, 5.89872, 5.884519, 5.327828, 5.4538856, 5.8510423
+2023-11-24 13:48:50,245 - Model - INFO - Accuracy is: 0.63482
+2023-11-24 13:48:50,245 - Model - INFO - Class avg accuracy is: 0.41889
+2023-11-24 13:48:50,245 - Model - INFO - Class avg mIOU is: 0.36372
+2023-11-24 13:48:50,245 - Model - INFO - Inctance avg mIOU is: 0.36372
+2023-11-24 13:56:28,332 - Model - INFO - PARAMETER ...
+2023-11-24 13:56:28,332 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/autocorrection/Prise01/')
+2023-11-24 13:56:28,332 - Model - INFO - The number of test data is: 74
+2023-11-24 13:57:09,612 - Model - INFO - eval mIoU of Back           0.214286
+2023-11-24 13:57:09,612 - Model - INFO - MSE error of the centers: nan
+2023-11-24 13:57:09,612 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-24 13:57:09,612 - Model - INFO - Average displacement of centers: nan, 8.767009, 14.136495, 19.99368, 13.856217, 22.52481, 12.453949, 13.02954
+2023-11-24 13:57:09,612 - Model - INFO - Accuracy is: 0.62862
+2023-11-24 13:57:09,612 - Model - INFO - Class avg accuracy is: 0.25936
+2023-11-24 13:57:09,612 - Model - INFO - Class avg mIOU is: 0.21429
+2023-11-24 13:57:09,612 - Model - INFO - Inctance avg mIOU is: 0.21429
+2023-11-24 13:57:23,923 - Model - INFO - PARAMETER ...
+2023-11-24 13:57:23,923 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/autocorrection/Prise02/')
+2023-11-24 13:57:23,923 - Model - INFO - The number of test data is: 76
+2023-11-24 13:58:06,385 - Model - INFO - eval mIoU of Back           0.228211
+2023-11-24 13:58:06,385 - Model - INFO - MSE error of the centers: nan
+2023-11-24 13:58:06,385 - Model - INFO - Average displacement of centers over all segments: nan
+2023-11-24 13:58:06,385 - Model - INFO - Average displacement of centers: nan, 7.881938, 12.145914, 16.186626, 12.001697, 20.367466, 10.320361, 9.780497
+2023-11-24 13:58:06,385 - Model - INFO - Accuracy is: 0.63460
+2023-11-24 13:58:06,385 - Model - INFO - Class avg accuracy is: 0.27344
+2023-11-24 13:58:06,385 - Model - INFO - Class avg mIOU is: 0.22821
+2023-11-24 13:58:06,385 - Model - INFO - Inctance avg mIOU is: 0.22821
+2023-11-24 13:58:12,970 - Model - INFO - PARAMETER ...
+2023-11-24 13:58:12,970 - Model - INFO - Namespace(batch_size=8, data='test', gpu='0', landmarks=8, log_dir='pointnet2_part_seg_msg_circles', normal=True, npoint=10000, num_votes=3, reg=True, save_pred=True, sequence='/Participant24/autocorrection/Prise03/')
+2023-11-24 13:58:12,970 - Model - INFO - The number of test data is: 70
+2023-11-24 13:58:53,333 - Model - INFO - eval mIoU of Back           0.250727
+2023-11-24 13:58:53,333 - Model - INFO - MSE error of the centers: 0.00010
+2023-11-24 13:58:53,333 - Model - INFO - Average displacement of centers over all segments: 8.88456
+2023-11-24 13:58:53,333 - Model - INFO - Average displacement of centers: 4.9757366, 9.222956, 12.238151, 12.8048725, 12.367028, 7.674483, 5.035661, 6.7576294
+2023-11-24 13:58:53,333 - Model - INFO - Accuracy is: 0.66182
+2023-11-24 13:58:53,333 - Model - INFO - Class avg accuracy is: 0.29270
+2023-11-24 13:58:53,333 - Model - INFO - Class avg mIOU is: 0.25073
+2023-11-24 13:58:53,333 - Model - INFO - Inctance avg mIOU is: 0.25073

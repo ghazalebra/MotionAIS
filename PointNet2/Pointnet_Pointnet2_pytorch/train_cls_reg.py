@@ -11,7 +11,7 @@ import numpy as np
 
 from pathlib import Path
 from tqdm import tqdm
-from data_utils.ScoliosisDataLoader import ScoliosisDataset 
+from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader import ScoliosisDataset 
 from torch.utils.tensorboard import SummaryWriter
 import random
 

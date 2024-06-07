@@ -1,4 +1,0 @@
-name: visuals
-channels:
-  - defaults
-prefix: /usagers2/ghebr/.conda/envs/visuals
