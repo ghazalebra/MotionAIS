@@ -1,7 +1,10 @@
 /.idea
 /__pycache__
 /flownet_experiments
+/__pycache__
+/flownet_experiments
 /PointNet2/.idea
+
 
 /PointNet2/Pointnet_Pointnet2_pytorch/runs
 /PointNet2/Pointnet_Pointnet2_pytorch/visualizer
