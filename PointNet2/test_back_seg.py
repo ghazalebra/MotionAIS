@@ -1,12 +1,7 @@
 # python test_back_seg.py --log_dir pointnet2_part_seg_msg --normal --save_pred --reg --landmarks 6
-
-"""
-Author: Benny
-Date: Nov 2019
-"""
 import argparse
 import os
-from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader import ScoliosisDataset
+from PointNet2.data_utils.ScoliosisDataLoader import ScoliosisDataset
 import torch
 import logging
 import sys

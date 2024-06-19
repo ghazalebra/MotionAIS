@@ -1,16 +1,28 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import FileUpload from "./components/FileUpload";
-import "./App.css"; // Import the CSS file
+import FileUpload from "./components/SequenceUpload";
+import "./App.css";
 import VisSequence3D from "./components/VisSequence3D";
-import data from "./sample_data";
+import axios from "axios";
+// import { io } from "socket.io-client";
 
 const App: React.FC = () => {
+  //   const socket = io(
+  //     "http://127.0.0.1:5000"
+  // {
+  //       transports: ["websocket"],
+  //       cors: {
+  //         origin: "http://localhost:3000/",
+  //       },
+  // }
+  // );
+
   // console.log("hello");
-  const handleSave = (files: File[]) => {
-    console.log("Files to save:", files);
-  };
+
+  const [uploadSequence, setUploadSequence] = useState(false);
+  const [sequenceList, setSequenceList] = useState<string[]>([]);
+  const [sequenceName, setSequenceName] = useState("");
 
   const [sequence, setSequence] = useState([]);
 
@@ -22,23 +34,111 @@ const App: React.FC = () => {
   const [showLandmarks, setShowLandmarks] = useState(false);
   const [showMotion, setShowMotion] = useState(false);
 
+  // const [progress, setProgress] = useState(1);
+
   useEffect(() => {
-    fetchSequence();
+    fetchSequenceList();
   }, []);
 
-  const fetchSequence = async () => {
-    const response = await fetch("http://127.0.0.1:5000/sequence");
+  // const startLoop = async () => {
+  //   try {
+  //     const response = await axios.post("http://127.0.0.1:5000/start_loop");
+  //     console.log(response.data.message);
+  //   } catch (error) {
+  //     console.error("Error starting loop:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   console.log("here");
+  //   socket.on("progress", (data) => {
+  //     setProgress(data.progress);
+  //     console.log(data.progress);
+  //   });
+
+  //   socket.on("connect", () => {
+  //     console.log("Connected to SocketIO server");
+  //   });
+
+  //   return () => {
+  //     socket.off("progress");
+  //     socket.off("connect");
+  //   };
+  // }, []);
+
+  const fetchSequenceList = async () => {
+    const response = await fetch(
+      "http://127.0.0.1:5000/sequencelist"
+      // "http://127.0.0.1:5000/sequencelist?path=data"
+    );
     const data = await response.json();
+    if (response.ok) {
+      setSequenceList(data.sequencelist);
+    } else {
+      console.error("Failed to fetch the sequences:", data.error);
+    }
+  };
+
+  const handleSequenceSelect = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSequenceName(event.target.value);
+  };
+
+  const handleSave = (files: File[], sequenceName: string) => {
+    console.log("Files and sequence name:", files, sequenceName);
+    setSequenceName(sequenceName);
+  };
+
+  const fetchSequence = async (sequenceName?: string) => {
+    const response = await axios.get("http://127.0.0.1:5000/sequence", {
+      params: { sequenceName },
+    });
+    const data = response.data;
     setSequence(data.sequence);
     setSequenceResults(data.results);
     setSequenceReady(true);
-    // console.log(data.sequence);
   };
+
   return (
     <div>
       <h1 className="header">Motion AIS</h1>
-      <div className="upload">
-        <FileUpload onSave={handleSave} />
+      <div className="specify-sequence">
+        <div>
+          <h3>Select or Upload a Sequence:</h3>
+          <select onChange={handleSequenceSelect} defaultValue="">
+            <option value="" disabled>
+              Select a sequence
+            </option>
+            {sequenceList.map((seq, index) => (
+              <option key={index} value={seq}>
+                {seq}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          onClick={() => {
+            setUploadSequence(!uploadSequence);
+          }}
+        >
+          Upload Sequence
+        </button>
+        {uploadSequence && <FileUpload onSave={handleSave} />}
+        <button
+          onClick={() => {
+            fetchSequence(sequenceName);
+          }}
+        >
+          Visualize Sequence
+        </button>
+
+        {/* <div> */}
+        {/* <h1>Progress Tracker</h1> */}
+        {/* <button onClick={startLoop}>Start Loop</button> */}
+        {/* <progress value={progress} max="100"></progress>
+        <p>{progress}%</p> */}
+        {/* </div> */}
       </div>
       <div className="task-bar">
         <input
@@ -74,11 +174,15 @@ const App: React.FC = () => {
         <div className="sequence-panel">
           {sequenceReady ? (
             <VisSequence3D sequence={sequence} results={sequenceResults} />
+          ) : sequenceName.length ? (
+            <p>On it...</p>
           ) : (
-            <p>not ready!</p>
+            <p>Please select or upload a sequence!</p>
           )}
         </div>
-        <div className="analysis-panel">the analysis</div>
+        <div className="analysis-panel">
+          <h1>Trunk Motion Analysis</h1>
+        </div>
       </div>
     </div>
   );

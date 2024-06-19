@@ -75,7 +75,6 @@ function VisSequence3D({ sequence, results }) {
 
     const scene = sceneRef.current;
 
-    // Remove previous points and landmarks
     if (pointsRef.current) {
       scene.remove(pointsRef.current);
     }
@@ -85,8 +84,11 @@ function VisSequence3D({ sequence, results }) {
 
     const body = sequence[frame - 1]["points"];
     const bodyColors = sequence[frame - 1]["colors"];
-    const landmarks = results[frame - 1]["centers"].slice(0, -1);
+    const landmarks = results
+      .slice(0, frame)
+      .reduce((acc, result) => acc.concat(result.centers.slice(0, -1)), []);
 
+    // console.log(landmarks);
     const bodyVertices = [];
     const bodyColorsArray = [];
     const landmarkVertices = [];
@@ -134,7 +136,7 @@ function VisSequence3D({ sequence, results }) {
     );
 
     const landmarkMaterial = new THREE.PointsMaterial({
-      size: 30,
+      size: 15,
       color: 0x00ff00, // Red color for landmarks
     });
 

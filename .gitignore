@@ -22,3 +22,5 @@
 ais-interface-backend/data
 so-open3d.yaml
 ais-interface/app/sample_data.tsx
+.DS_Store
+main_.py

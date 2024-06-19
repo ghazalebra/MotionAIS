@@ -1,7 +1,3 @@
-"""
-Author: Benny
-Date: Nov 2019
-"""
 import argparse
 import os
 import torch
@@ -15,8 +11,7 @@ import numpy as np
 
 from pathlib import Path
 from tqdm import tqdm
-from data_utils.ShapeNetDataLoader import PartNormalDataset
-from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader import ScoliosisDataset
+from PointNet2.data_utils.ScoliosisDataLoader import ScoliosisDataset
 
 from torch.utils.tensorboard import SummaryWriter
 import random

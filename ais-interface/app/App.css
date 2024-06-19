@@ -1,38 +1,44 @@
+/* #CDE8E5
+#EEF7FF
+#7AB2B2
+#4D869C */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: start;
   min-height: 100vh;
   background-color: rgb(255, 255, 255);
 }
 
 .header {
-  margin-top: 20px;
+  margin: 20px;
   font-size: 2.5em;
-  color: #333;
+  color: #03aed2;
 }
 
-.upload {
+.specify-sequence {
   margin: 20px;
   padding: 20px;
-  background-color: #55cbb7;
+  background-color: #ffffff;
   border-radius: 8px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
+  /* max-width: 600px; */
   display: flex;
 }
 
 .content {
-  background-color: #55cbb7;
+  background-color: #cde8e5;
   display: flex;
+  margin: 20px;
   border-radius: 8px;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   /* width: 1000px; */
   /* max-width: 3000px; */
 }
@@ -41,11 +47,13 @@ body {
 .analysis-panel {
   margin: 20px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #7ab2b2;
   border-radius: 8px;
+  display: flex;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  /* width: 45%; */
-  text-align: center;
+  width: 100%;
+  height: 100%;
+  /* text-align: center; */
 }
 
 /* .sequence-panel {
@@ -64,6 +72,7 @@ button {
   color: white;
   border: none;
   padding: 10px 20px;
+  margin: 10px;
   font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
@@ -81,7 +90,7 @@ input[type="file"] {
 .visualization-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .slider-container {
@@ -90,7 +99,7 @@ input[type="file"] {
 }
 
 .slider {
-  width: 100%;
+  width: 80%;
   /* margin: px 0; */
 }
 

@@ -3,7 +3,7 @@ import numpy as np
 import importlib
 import json
 import os
-from PointNet2.Pointnet_Pointnet2_pytorch.data_utils.ScoliosisDataLoader import ScoliosisDataset
+from PointNet2.data_utils.ScoliosisDataLoader import ScoliosisDataset
 import random
 from tqdm import tqdm
 import sys
@@ -15,7 +15,7 @@ import sys
 # print("here")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = BASE_DIR + '/PointNet2/Pointnet_Pointnet2_pytorch/'
+ROOT_DIR = BASE_DIR + '/PointNet2/'
 sys.path.append(os.path.join(ROOT_DIR, 'models'))
 
 
@@ -116,7 +116,7 @@ def find_centers(points, labels, n=9):
     
     return (centers / num_labels[:, :, None]).tolist()
 
-# Find anatomical segments and their middle points (landmarks)for a given frame of a motion sequence
+# Find anatomical segments and their middle points (estimated landmarks)for a given frame of a motion sequence
 def find_segments_frame(data, net, device='cpu', landmarks=True, num_part=7):
 
     num_classes = 1
@@ -156,7 +156,7 @@ def find_segments_frame(data, net, device='cpu', landmarks=True, num_part=7):
 
     return [{'labels': labels[i].tolist(), 'centers': centers[i]} for i in range(len(points))]
 
-def find_segments_sequence(sequence, method=''):
+def find_segments_sequence(sequence, method='', publish_progress=None):
 
     # reproducibility
     manual_seed = 0
@@ -224,6 +224,9 @@ def find_segments_sequence(sequence, method=''):
             #     for output, frame in zip(output_batch, frames):
             #         with open(output_dir + f'{frame[:-4]}.json', 'w') as f:
             #             json.dump(output, f)
+
+            if publish_progress is not None:
+                publish_progress(batch_id, len(sequenceDataLoader))
     print("Done!")
     return outputs
 
