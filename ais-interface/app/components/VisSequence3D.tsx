@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import "../App.css";
 
 function VisSequence3D({ sequence, results }) {
@@ -12,6 +14,7 @@ function VisSequence3D({ sequence, results }) {
   const sceneRef = useRef(null);
   const pointsRef = useRef(null);
   const landmarksRef = useRef(null);
+  const labelsRef = useRef([]);
 
   useEffect(() => {
     console.log("Initializing scene");
@@ -81,6 +84,8 @@ function VisSequence3D({ sequence, results }) {
     if (landmarksRef.current) {
       scene.remove(landmarksRef.current);
     }
+    labelsRef.current.forEach((label) => scene.remove(label));
+    labelsRef.current = [];
 
     const body = sequence[frame - 1]["points"];
     const bodyColors = sequence[frame - 1]["colors"];
@@ -88,10 +93,10 @@ function VisSequence3D({ sequence, results }) {
       .slice(0, frame)
       .reduce((acc, result) => acc.concat(result.centers.slice(0, -1)), []);
 
-    // console.log(landmarks);
     const bodyVertices = [];
     const bodyColorsArray = [];
     const landmarkVertices = [];
+    const labels = [];
 
     // Add body points
     body.forEach((coord, index) => {
@@ -104,8 +109,10 @@ function VisSequence3D({ sequence, results }) {
     });
 
     // Add landmarks
-    landmarks.forEach((coord) => {
+    // landmarks = [1: C7, 2: ScL, 3: ScR, 4: IL, 5: IR, 6: TUp, 7: TAp, 8: TDown]
+    landmarks.forEach((coord, index) => {
       landmarkVertices.push(coord[1], coord[0], coord[2] + 5);
+      labels.push(`${index + 1}`);
     });
 
     // Body geometry and material
@@ -137,12 +144,31 @@ function VisSequence3D({ sequence, results }) {
 
     const landmarkMaterial = new THREE.PointsMaterial({
       size: 15,
-      color: 0x00ff00, // Red color for landmarks
+      color: 0x00ff00, // Green color for landmarks
     });
 
     const landmarkPoints = new THREE.Points(landmarkGeometry, landmarkMaterial);
     scene.add(landmarkPoints);
     landmarksRef.current = landmarkPoints;
+
+    // Add labels
+    const loader = new FontLoader();
+    loader.load("/fonts/helvetiker_regular.typeface.json", function (font) {
+      labels.forEach((label, index) => {
+        const textGeometry = new TextGeometry(label, {
+          font: font,
+          size: 15,
+          height: 1,
+        });
+
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        const position = landmarkVertices.slice(index * 3, index * 3 + 3);
+        textMesh.position.set(position[0] + 10, position[1], position[2] + 10);
+        scene.add(textMesh);
+        labelsRef.current.push(textMesh);
+      });
+    });
   }, [frame, sequence, results]);
 
   return (
