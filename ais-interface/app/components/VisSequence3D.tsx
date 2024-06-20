@@ -152,23 +152,23 @@ function VisSequence3D({ sequence, results }) {
     landmarksRef.current = landmarkPoints;
 
     // Add labels
-    const loader = new FontLoader();
-    loader.load("/fonts/helvetiker_regular.typeface.json", function (font) {
-      labels.forEach((label, index) => {
-        const textGeometry = new TextGeometry(label, {
-          font: font,
-          size: 15,
-          height: 1,
-        });
+    // const loader = new FontLoader();
+    // loader.load("/fonts/helvetiker_regular.typeface.json", function (font) {
+    //   labels.forEach((label, index) => {
+    //     const textGeometry = new TextGeometry(label, {
+    //       font: font,
+    //       size: 15,
+    //       height: 1,
+    //     });
 
-        const textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-        const position = landmarkVertices.slice(index * 3, index * 3 + 3);
-        textMesh.position.set(position[0] + 10, position[1], position[2] + 10);
-        scene.add(textMesh);
-        labelsRef.current.push(textMesh);
-      });
-    });
+    //     const textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    //     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    //     const position = landmarkVertices.slice(index * 3, index * 3 + 3);
+    //     textMesh.position.set(position[0] + 10, position[1], position[2] + 10);
+    //     scene.add(textMesh);
+    //     labelsRef.current.push(textMesh);
+    //   });
+    // });
   }, [frame, sequence, results]);
 
   return (
