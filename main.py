@@ -7,6 +7,11 @@ from PointNet2.data_utils.ScoliosisDataLoader import ScoliosisDataset
 import random
 from tqdm import tqdm
 import sys
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import math
+import io
 # import open3d as o3d
 # import faulthandler
 # faulthandler.enable()
@@ -17,7 +22,6 @@ import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR + '/PointNet2/'
 sys.path.append(os.path.join(ROOT_DIR, 'models'))
-
 
 
 def visualize_sequence_flow(markers_flow_points_target=[], markers_flow_points=[], frame_first=None, frame_last=None, color_first=None, color_last=None, frame_last_=[], offset=50):
@@ -91,14 +95,12 @@ def visualize_sequence_flow(markers_flow_points_target=[], markers_flow_points=[
 
     o3d.visualization.draw_geometries([all_pc])
 
-
 def to_categorical(y, num_classes):
     """ 1-hot encodes a tensor """
     new_y = torch.eye(num_classes)[y.cpu().data.numpy(),]
     if (y.is_cuda):
         return new_y.cuda()
     return new_y
-
 
 def find_centers(points, labels, n=9):
     centers = torch.zeros((len(points), n, 3))
@@ -230,9 +232,122 @@ def find_segments_sequence(sequence, method='', publish_progress=None):
     print("Done!")
     return outputs
 
-# def main(args):
-#     sequence = []
-#     path = "/Users/ghebr/Desktop/MotionAIS/ais-interface-backend/data/"
+# Calculate the metrics
+def calculate_metrics(sequence=[], path=None):
+    if not len(sequence):
+        if "results" in os.listdir(path):
+            path = path + "/results/"
+            print(path)
+        frames = sorted(os.listdir(path))
+        for frame in frames:
+            frame_path = path + str(frame)
+            with open(frame_path) as frame_file:
+                sequence.append(json.load(frame_file))
+
+    # landmarks = [1: C7, 2: ScL, 3: ScR, 4: IL, 5: IR, 6: TUp, 7: TAp, 8: TDown]
+    metrics = {
+        'Scapulae Angle y-axis': [], 
+        'Scapulae Angle z-axis': [],
+        'Scapulae Assymmetry': [],
+        'Scoliosis Angle': [],
+        'Pelvis Movement': [],
+        }
+    for i, frame in tqdm(enumerate(sequence)):
+        landmarks = frame['centers']
+        scap_y = np.degrees(np.arctan((landmarks[2][1] - landmarks[1][1])/(landmarks[2][0] - landmarks[1][0])))
+        metrics['Scapulae Angle y-axis'].append(scap_y)
+        scap_z = np.degrees(np.arctan((landmarks[2][2] - landmarks[1][2])/(landmarks[2][0] - landmarks[1][0]))) #ajouter avec z
+        metrics['Scapulae Angle z-axis'].append(scap_z)
+
+        a = (landmarks[7][0]-landmarks[0][0])/(landmarks[7][1]-landmarks[0][1])
+        b = landmarks[0][0] - a*landmarks[0][1]
+        x1 = landmarks[1][0]
+        x2 = (a*landmarks[1][1])+b
+        d1 = abs(x1 - x2)
+        x3 = landmarks[2][0]
+        x4 = a*landmarks[2][1]+b
+        d2 = abs(x3 - x4)
+        diff_d1d2 = abs(d1 - d2)
+        metrics['Scapulae Assymmetry'].append(diff_d1d2)
+
+        # movement of the pelvis in the x-axis
+        pelvis_movement = (landmarks[4][0]+landmarks[3][0])/2 - landmarks[0][0]
+        metrics['Pelvis Movement'].append(pelvis_movement)
+        
+        a = np.sqrt((landmarks[5][0]-landmarks[6][0])**2+(landmarks[5][1]-landmarks[6][1])**2)
+        b = np.sqrt((landmarks[6][0]-landmarks[7][0])**2+(landmarks[6][1]-landmarks[7][1])**2)
+        c = np.sqrt((landmarks[5][0]-landmarks[7][0])**2+(landmarks[5][1]-landmarks[7][1])**2)
+        scoliosis_angle = 180 - np.degrees(np.arccos((a**2+b**2-c**2)/(2*a*b)))
+        metrics['Scoliosis Angle'].append(scoliosis_angle)
+
+    return metrics
+
+def moving_average(data, window_size):
+    cumsum = np.cumsum(np.insert(data, 0, 0)) 
+    return (cumsum[window_size:] - cumsum[:-window_size]) / float(window_size)
+
+def plot_metrics(metrics, metrics_names = [
+        'Scapulae Angle y-axis', 
+        'Scapulae Angle z-axis',
+        'Scapulae Assymmetry',
+        'Scoliosis Angle',
+        'Pelvis Movement',
+        ], window_size=5):
+    num_metrics = len(metrics_names)
+    num_cols = min(num_metrics, 3)  # Adjust the number of columns as needed (e.g., 3 columns)
+
+    num_rows = math.ceil(num_metrics / num_cols)
+    fig, axs = plt.subplots(num_rows, num_cols, figsize=(15, 5*num_rows))
+
+    for i, metric_name in enumerate(metrics_names):
+        row = i // num_cols
+        col = i % num_cols
+        values = metrics[metric_name]
+
+        # Apply smoothing
+        if len(values) >= window_size:
+            smoothed_values = moving_average(values, window_size)
+            # Extend the range to match the original values for plotting
+            x = range(1 + window_size//2, len(values) - window_size//2 + 1)
+        else:
+            smoothed_values = values
+            x = range(1, len(values) + 1)
+
+        ax = axs[row, col] if num_metrics > 1 else axs  # Handle single subplot case
+
+        ax.plot(range(1, len(values) + 1), values, linestyle='-', color='grey', alpha=0.5, label='Original Values')
+        ax.plot(x, smoothed_values, linestyle='-', color='green', label='Smoothed Values')
+        
+        ax.set_title(f'Metric "{metric_name}"')
+        ax.set_xlabel('Frame')
+        ax.set_ylabel('Value')
+        # ax.grid(True)
+        ax.legend()
+
+    # Remove empty subplots if any
+    for i in range(num_metrics, num_rows * num_cols):
+        row = i // num_cols
+        col = i % num_cols
+        if num_metrics > 1:
+            fig.delaxes(axs[row, col])
+        else:
+            fig.delaxes(axs)
+
+    plt.tight_layout()
+    img_bytes = io.BytesIO()
+    plt.savefig(img_bytes, format='png')
+    img_bytes.seek(0)
+    plt.close(fig)
+    
+    return img_bytes
+        
+def main(args):
+    sequence = []
+    path = "/Users/ghebr/Desktop/MotionAIS/ais-interface-backend/data/pt23-bending-left-free-02"
+    metrics = calculate_metrics(path=path)
+    # print(metrics)
+    plot_metrics(metrics=metrics)
+
 #     frames = os.listdir(path + "uploads/")
 #     for frame in frames:
 #         frame_path = path + "uploads/" + str(frame)
@@ -326,5 +441,5 @@ def find_segments_sequence(sequence, method='', publish_progress=None):
 #         # Option 4: Show the graphs
 
 
-# if __name__ == '__main__':
-#     main(sys.argv)
+if __name__ == '__main__':
+    main(sys.argv)

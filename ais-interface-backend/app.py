@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 # from flask_socketio import SocketIO, emit
 # import eventlet
 from flask_cors import CORS
@@ -87,7 +87,9 @@ def upload_file():
 #     emit('progress', {'progress': 40})  # Emit a test progress message
 
 @app.route('/sequence', methods=['GET'])
-def get_sequence():
+def get_sequence(find_landmarks=False, calculate_metrics_=False):
+
+    # Load sequence
     sequence_name = request.args.get('sequenceName')
     if not sequence_name:
         return jsonify({"error": "No sequence name provided"}), 400
@@ -96,11 +98,12 @@ def get_sequence():
     sequence_path = os.path.join(DATA_PATH, sequence_name)
 
     frames = sorted(os.listdir(sequence_path + "/uploads/"))
-    # print(frames)
     for frame in frames:
         frame_path = sequence_path + "/uploads/" + str(frame)
         with open(frame_path) as frame_file:
             sequence.append(json.load(frame_file))
+
+    # Find landmarks
     outpath = sequence_path + "/results/"
     os.makedirs(outpath, exist_ok=True)
     if len(os.listdir(outpath)):
@@ -117,7 +120,58 @@ def get_sequence():
         for output, frame in zip(outputs, frames):
             with open(outpath + f'{frame[:-5]}.json', 'w') as f:
                 json.dump(output, f)
+
+    # Motion analysis
+    # metrics_path = sequence_path + "/metrics/"
+    # os.makedirs(metrics_path, exist_ok=True)
+    # if len(os.listdir(metrics_path)) or calculate_metrics_:
+    #     with open(metrics_path+'metrics.json', 'w') as metrics_file:
+    #         metrics = json.load(metrics_file)
+    # else:    
+    #     metrics = calculate_metrics(outputs)
+
     return jsonify({"sequence": sequence, "results": outputs}), 200
+
+@app.route('/analyze')
+def get_plots(new=False):
+    # Load sequence
+    sequence_name = request.args.get('sequenceName')
+    if not sequence_name:
+        return jsonify({"error": "No sequence name provided"}), 400
+
+    sequence = []
+    sequence_path = os.path.join(DATA_PATH, sequence_name)
+
+    metrics_path = sequence_path + "/metrics/"
+
+    if os.path.isdir(metrics_path) and os.path.isfile(metrics_path + "metrics.json") and not new:
+        with open(metrics_path+'metrics.json', 'r') as metrics_file:
+            metrics = json.load(metrics_file)
+    else:
+        outpath = sequence_path + "/results/"
+        if os.path.isdir(outpath) and len(os.listdir(outpath)):
+            frames = sorted(os.listdir(outpath))
+            outputs = []
+            for i, frame in enumerate(frames):
+                # publish_progress(i, len(frames))
+                frame_path = outpath + str(frame)
+                with open(frame_path) as frame_file:
+                    outputs.append(json.load(frame_file))
+            metrics = calculate_metrics(outputs)
+            os.makedirs(metrics_path, exist_ok=True)
+            with open(metrics_path + 'metrics.json', 'w') as metrics_file:
+                json.dump(metrics, metrics_file)
+        else: 
+            return jsonify({"error": "Landmarks not found"}), 400
+    
+    img_plots = plot_metrics(metrics, metrics_names=['Scoliosis Angle'])
+    
+    return send_file(img_plots, mimetype='image/png')
+
+    # return jsonify({"sequence": sequence, "results": outputs}), 200
+
+
+
 
 @app.route('/sequencelist', methods=['GET'])
 def get_sequence_list():

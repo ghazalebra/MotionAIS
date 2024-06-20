@@ -49,7 +49,7 @@ body {
   padding: 20px;
   background-color: #7ab2b2;
   border-radius: 8px;
-  display: flex;
+  /* display: flex; */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   width: 100%;
   height: 100%;
@@ -63,9 +63,10 @@ body {
   justify-content: center;
 } */
 
-/* .analysis-panel {
-  background-color: #fff;
-} */
+.analysis-panel {
+  /* background-color: #fff; */
+  align-items: center;
+}
 
 button {
   background-color: #ec9557;

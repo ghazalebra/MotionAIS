@@ -34,6 +34,8 @@ const App: React.FC = () => {
   const [showLandmarks, setShowLandmarks] = useState(false);
   const [showMotion, setShowMotion] = useState(false);
 
+  const [plots, setPlots] = useState("");
+
   // const [progress, setProgress] = useState(1);
 
   useEffect(() => {
@@ -98,6 +100,23 @@ const App: React.FC = () => {
     setSequence(data.sequence);
     setSequenceResults(data.results);
     setSequenceReady(true);
+  };
+
+  const fetchplots = async (sequenceName?: string) => {
+    const url = new URL("http://127.0.0.1:5000/analyze");
+    if (sequenceName) {
+      url.searchParams.append("sequenceName", sequenceName);
+    }
+
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(blob);
+        setPlots(url);
+      })
+      .catch((error) => {
+        console.error("Error fetching the plots:", error);
+      });
   };
 
   return (
@@ -182,6 +201,14 @@ const App: React.FC = () => {
         </div>
         <div className="analysis-panel">
           <h1>Trunk Motion Analysis</h1>
+          <button
+            onClick={() => {
+              fetchplots(sequenceName);
+            }}
+          >
+            Show Motion Analysis
+          </button>
+          {plots && <img src={plots} alt="Motion Analysis" />}
         </div>
       </div>
     </div>
