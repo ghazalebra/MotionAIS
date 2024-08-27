@@ -61,16 +61,21 @@ const FileUpload: React.FC<FileUploadProps> = ({ onSave }) => {
 
   return (
     <div className="upload-sequence">
-      <input
-        type="text"
-        value={sequenceName}
-        onChange={handleSequenceNameChange}
-        placeholder="Enter sequence name"
-      />
-      <input type="file" multiple onChange={handleFileChange} />
-      <button onClick={handleSave}>Upload</button>
-      <progress value={uploadProgress} max="100"></progress>
-
+      <div className="inputs-row">
+        <input
+          type="text"
+          value={sequenceName}
+          onChange={(e) => handleSequenceSelect(e)}
+          placeholder="Enter sequence name"
+        />
+        <input
+          type="file"
+          multiple
+          onChange={(e) => handleSave(e.target.files, sequenceName)}
+        />
+        <button onClick={handleSave}>Upload</button>
+      </div>
+      <progress value={0} max="100"></progress>
       {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
     </div>
   );

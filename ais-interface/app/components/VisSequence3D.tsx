@@ -111,7 +111,7 @@ function VisSequence3D({ sequence, results }) {
     // Add landmarks
     // landmarks = [1: C7, 2: ScL, 3: ScR, 4: IL, 5: IR, 6: TUp, 7: TAp, 8: TDown]
     landmarks.forEach((coord, index) => {
-      landmarkVertices.push(coord[1], coord[0], coord[2] + 5);
+      landmarkVertices.push(coord[1], coord[0], coord[2] + 10);
       labels.push(`${index + 1}`);
     });
 

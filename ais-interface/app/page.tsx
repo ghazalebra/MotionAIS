@@ -5,79 +5,35 @@ import FileUpload from "./components/SequenceUpload";
 import "./App.css";
 import VisSequence3D from "./components/VisSequence3D";
 import axios from "axios";
-// import { io } from "socket.io-client";
+import Collapsible from "react-collapsible";
 
 const App: React.FC = () => {
-  //   const socket = io(
-  //     "http://127.0.0.1:5000"
-  // {
-  //       transports: ["websocket"],
-  //       cors: {
-  //         origin: "http://localhost:3000/",
-  //       },
-  // }
-  // );
-
-  // console.log("hello");
-
   const [uploadSequence, setUploadSequence] = useState(false);
   const [sequenceList, setSequenceList] = useState<string[]>([]);
   const [sequenceName, setSequenceName] = useState("");
-
-  const [sequence, setSequence] = useState([]);
-
+  const [sequence, setSequence] = useState<any[]>([]);
   const [sequenceReady, setSequenceReady] = useState(false);
-  const [sequenceResults, setSequenceResults] = useState([]);
-
-  // options
+  const [sequenceResults, setSequenceResults] = useState<any[]>([]);
   const [showSegments, setShowSegments] = useState(false);
   const [showLandmarks, setShowLandmarks] = useState(false);
   const [showMotion, setShowMotion] = useState(false);
-
   const [plots, setPlots] = useState("");
-
-  // const [progress, setProgress] = useState(1);
 
   useEffect(() => {
     fetchSequenceList();
   }, []);
 
-  // const startLoop = async () => {
-  //   try {
-  //     const response = await axios.post("http://127.0.0.1:5000/start_loop");
-  //     console.log(response.data.message);
-  //   } catch (error) {
-  //     console.error("Error starting loop:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   console.log("here");
-  //   socket.on("progress", (data) => {
-  //     setProgress(data.progress);
-  //     console.log(data.progress);
-  //   });
-
-  //   socket.on("connect", () => {
-  //     console.log("Connected to SocketIO server");
-  //   });
-
-  //   return () => {
-  //     socket.off("progress");
-  //     socket.off("connect");
-  //   };
-  // }, []);
-
   const fetchSequenceList = async () => {
-    const response = await fetch(
-      "http://127.0.0.1:5000/sequencelist"
-      // "http://127.0.0.1:5000/sequencelist?path=data"
-    );
-    const data = await response.json();
-    if (response.ok) {
-      setSequenceList(data.sequencelist);
-    } else {
-      console.error("Failed to fetch the sequences:", data.error);
+    try {
+      const response = await fetch("http://127.0.0.1:5000/sequencelist");
+      const data = await response.json();
+      if (response.ok) {
+        setSequenceList(data.sequencelist);
+      } else {
+        console.error("Failed to fetch the sequences:", data.error);
+      }
+    } catch (error) {
+      console.error("Error fetching the sequence list:", error);
     }
   };
 
@@ -93,36 +49,51 @@ const App: React.FC = () => {
   };
 
   const fetchSequence = async (sequenceName?: string) => {
-    const response = await axios.get("http://127.0.0.1:5000/sequence", {
-      params: { sequenceName },
-    });
-    const data = response.data;
-    setSequence(data.sequence);
-    setSequenceResults(data.results);
-    setSequenceReady(true);
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/sequence", {
+        params: { sequenceName },
+      });
+      const data = response.data;
+      setSequence(data.sequence);
+      setSequenceReady(true);
+    } catch (error) {
+      console.error("Error fetching the sequence:", error);
+    }
   };
 
-  const fetchplots = async (sequenceName?: string) => {
+  const fetchLandmarks = async (sequenceName?: string) => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/landmarks", {
+        params: { sequenceName },
+      });
+      const data = response.data;
+      setSequenceResults(data.results);
+    } catch (error) {
+      console.error("Error fetching the landmarks:", error);
+    }
+  };
+
+  const fetchPlots = async (sequenceName?: string) => {
     const url = new URL("http://127.0.0.1:5000/analyze");
     if (sequenceName) {
       url.searchParams.append("sequenceName", sequenceName);
     }
 
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(blob);
-        setPlots(url);
-      })
-      .catch((error) => {
-        console.error("Error fetching the plots:", error);
-      });
+    try {
+      const response = await fetch(url.toString());
+      const blob = await response.blob();
+      const plotUrl = URL.createObjectURL(blob);
+      console.log(plotUrl);
+      setPlots(plotUrl);
+    } catch (error) {
+      console.error("Error fetching the plots:", error);
+    }
   };
 
   return (
     <div>
       <h1 className="header">Motion AIS</h1>
-      <div className="specify-sequence">
+      <div className="choose-sequence">
         <div>
           <h3>Select or Upload a Sequence:</h3>
           <select onChange={handleSequenceSelect} defaultValue="">
@@ -136,58 +107,57 @@ const App: React.FC = () => {
             ))}
           </select>
         </div>
-        <button
-          onClick={() => {
-            setUploadSequence(!uploadSequence);
-          }}
+        <Collapsible
+          trigger={
+            <div
+              className="collapsible-trigger"
+              //  key={someStableKey}
+            >
+              Upload Sequence
+              <span className={`arrow ${uploadSequence ? "open" : ""}`}>
+                &#9654;
+              </span>
+            </div>
+          }
+          onOpening={() => setUploadSequence(true)}
+          onClosing={() => setUploadSequence(false)}
         >
-          Upload Sequence
-        </button>
-        {uploadSequence && <FileUpload onSave={handleSave} />}
-        <button
-          onClick={() => {
-            fetchSequence(sequenceName);
-          }}
-        >
+          {uploadSequence && <FileUpload onSave={handleSave} />}
+        </Collapsible>
+        <button onClick={() => fetchSequence(sequenceName)}>
           Visualize Sequence
         </button>
-
-        {/* <div> */}
-        {/* <h1>Progress Tracker</h1> */}
-        {/* <button onClick={startLoop}>Start Loop</button> */}
-        {/* <progress value={progress} max="100"></progress>
-        <p>{progress}%</p> */}
-        {/* </div> */}
       </div>
-      <div className="task-bar">
+      {/* <div className="task-bar">
         <input
           type="checkbox"
           id="show-segment-checkbox"
           checked={showSegments}
-          onChange={(event) => {
-            setShowSegments(event.target.checked);
-          }}
+          onChange={(event) => setShowSegments(event.target.checked)}
         />
         <label htmlFor="show-segment-checkbox">Show Segments</label>
-
         <input
           type="checkbox"
           id="show-landmarks-checkbox"
           checked={showLandmarks}
-          onChange={(event) => {
-            setShowLandmarks(event.target.checked);
-          }}
+          onChange={(event) => setShowLandmarks(event.target.checked)}
         />
-        <label htmlFor="show-motion-checkbox">Show Landmarks</label>
+        <label htmlFor="show-landmarks-checkbox">Show Landmarks</label>
         <input
           type="checkbox"
           id="show-motion-checkbox"
           checked={showMotion}
-          onChange={(event) => {
-            setShowMotion(event.target.checked);
-          }}
+          onChange={(event) => setShowMotion(event.target.checked)}
         />
         <label htmlFor="show-motion-checkbox">Show Motion</label>
+      </div> */}
+      <div className="tasks">
+        <button onClick={() => fetchLandmarks(sequenceName)}>
+          Track Landmarks
+        </button>
+        <button onClick={() => fetchPlots(sequenceName)}>
+          Show Motion Analysis
+        </button>
       </div>
       <div className="content">
         <div className="sequence-panel">
@@ -201,13 +171,6 @@ const App: React.FC = () => {
         </div>
         <div className="analysis-panel">
           <h1>Trunk Motion Analysis</h1>
-          <button
-            onClick={() => {
-              fetchplots(sequenceName);
-            }}
-          >
-            Show Motion Analysis
-          </button>
           {plots && <img src={plots} alt="Motion Analysis" />}
         </div>
       </div>
