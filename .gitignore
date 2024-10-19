@@ -18,9 +18,11 @@
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/10000/predictions
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/10000-v1/predictions
 /PointNet2/Pointnet_Pointnet2_pytorch/log/regression/pointnet2_reg_cls_msg/20000/predictions
+/Users/ghebr/Desktop/MotionAIS/build
 
 ais-interface-backend/data
 so-open3d.yaml
 ais-interface/app/sample_data.tsx
 .DS_Store
 main_.py
+
