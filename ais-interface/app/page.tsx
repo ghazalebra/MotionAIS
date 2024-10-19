@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [sequenceName, setSequenceName] = useState("");
   const [sequence, setSequence] = useState<any[]>([]);
   const [sequenceReady, setSequenceReady] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [sequenceResults, setSequenceResults] = useState<any[]>([]);
   const [showSegments, setShowSegments] = useState(false);
   const [showLandmarks, setShowLandmarks] = useState(false);
@@ -49,6 +50,7 @@ const App: React.FC = () => {
   };
 
   const fetchSequence = async (sequenceName?: string) => {
+    setIsFetching(true);
     try {
       const response = await axios.get("http://127.0.0.1:5000/sequence", {
         params: { sequenceName },
@@ -59,6 +61,7 @@ const App: React.FC = () => {
     } catch (error) {
       console.error("Error fetching the sequence:", error);
     }
+    setIsFetching(false);
   };
 
   const fetchLandmarks = async (sequenceName?: string) => {
@@ -92,7 +95,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1 className="header">Motion AIS</h1>
+      {/* <h1 className="header">Motion AIS</h1> */}
       <div className="choose-sequence">
         <div>
           <h3>Select or Upload a Sequence:</h3>
@@ -124,54 +127,38 @@ const App: React.FC = () => {
         >
           {uploadSequence && <FileUpload onSave={handleSave} />}
         </Collapsible>
-        <button onClick={() => fetchSequence(sequenceName)}>
-          Visualize Sequence
-        </button>
+        <div className="tasks">
+          <button onClick={() => fetchSequence(sequenceName)}>
+            Visualize Sequence
+          </button>
+          <button onClick={() => fetchLandmarks(sequenceName)}>
+            Track Landmarks
+          </button>
+          <button onClick={() => fetchPlots(sequenceName)}>
+            Show Motion Analysis
+          </button>
+        </div>
       </div>
-      {/* <div className="task-bar">
-        <input
-          type="checkbox"
-          id="show-segment-checkbox"
-          checked={showSegments}
-          onChange={(event) => setShowSegments(event.target.checked)}
-        />
-        <label htmlFor="show-segment-checkbox">Show Segments</label>
-        <input
-          type="checkbox"
-          id="show-landmarks-checkbox"
-          checked={showLandmarks}
-          onChange={(event) => setShowLandmarks(event.target.checked)}
-        />
-        <label htmlFor="show-landmarks-checkbox">Show Landmarks</label>
-        <input
-          type="checkbox"
-          id="show-motion-checkbox"
-          checked={showMotion}
-          onChange={(event) => setShowMotion(event.target.checked)}
-        />
-        <label htmlFor="show-motion-checkbox">Show Motion</label>
-      </div> */}
-      <div className="tasks">
-        <button onClick={() => fetchLandmarks(sequenceName)}>
-          Track Landmarks
-        </button>
-        <button onClick={() => fetchPlots(sequenceName)}>
-          Show Motion Analysis
-        </button>
-      </div>
+
       <div className="content">
         <div className="sequence-panel">
           {sequenceReady ? (
             <VisSequence3D sequence={sequence} results={sequenceResults} />
-          ) : sequenceName.length ? (
-            <p>On it...</p>
+          ) : sequenceName.length && isFetching ? (
+            <p className="loading-message">Loading the sequence...</p>
           ) : (
-            <p>Please select or upload a sequence!</p>
+            <p className="placeholder">Please select or upload a sequence!</p>
           )}
         </div>
+
         <div className="analysis-panel">
-          <h1>Trunk Motion Analysis</h1>
-          {plots && <img src={plots} alt="Motion Analysis" />}
+          {plots ? (
+            <img src={plots} alt="Motion Analysis" />
+          ) : (
+            <div className="placeholder">
+              <p>Analysis graphs will appear here once available.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

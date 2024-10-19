@@ -14,30 +14,53 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-.header {
+/* .header {
   margin: 20px;
   font-size: 2.5em;
   color: #03aed2;
-}
+} */
 
 .choose-sequence,
-.content,
 .sequence-panel,
-.analysis-panel,
-.tasks {
+.analysis-panel {
   display: flex;
-  align-items: flex-start;
   gap: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   /* background-color: #f9f9f9; */
   /* width: 100%; */
-  margin: 20px;
+  margin: 10px;
+}
+
+.content,
+.tasks,
+.sequence-panel,
+.analysis-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasks {
+  gap: 5px;
+}
+
+.sequence-panel,
+.analysis-panel {
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 50%;
+  height: 600px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .choose-sequence {
   flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .choose-sequence h3 {
@@ -67,7 +90,7 @@ body {
   cursor: pointer;
   width: 100%;
   margin-top: 5px;
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .collapsible-trigger:hover {
@@ -127,27 +150,14 @@ body {
   font-size: 12px;
 }
 
-/* .tasks { */
-/* margin: 20px; */
-/* width: 90%; */
-/* display: flex; */
-/* } */
-
-/* .sequence-panel {
-  background-color: #e0f7fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 button {
-  padding: 8px 12px;
+  padding: 5px;
   background-color: #ec9557;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   /* margin: 5px; */
   transition: background-color 0.3s;
 }
@@ -185,26 +195,4 @@ input[type="file"] {
   margin-left: 10px;
   font-size: 1em;
   color: #333;
-}
-
-.task-bar {
-  background-color: #55cbb7;
-  display: flex;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.task-bar input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-.task-bar label {
-  margin-right: 10px;
-  font-size: 8px;
-  color: #333;
-}
-
-.task-bar label:hover {
-  cursor: pointer;
 }
