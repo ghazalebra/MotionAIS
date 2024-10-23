@@ -1,0 +1,17 @@
+.pdf-link {
+  font-size: 1.2rem; /* Font size for the link */
+  color: #4d869c; /* Link color */
+  margin: 20px 20px; /* Space around the link */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.pdf-link:hover {
+  color: #7ab2b2; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover for emphasis */
+}
+
+.about-description {
+  margin: 20px;
+  text-align: justify;
+}

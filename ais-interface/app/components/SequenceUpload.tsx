@@ -2,7 +2,7 @@
 
 import React, { useState, ChangeEvent } from "react";
 import axios from "axios";
-import "../App.css";
+import "../styles/Demo.css";
 
 interface FileUploadProps {
   onSave?: (files: File[], sequence_name: string) => void;

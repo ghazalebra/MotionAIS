@@ -6,7 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import "../App.css";
+import "../styles/Demo.css";
 
 function VisSequence3D({ sequence, results }) {
   const [frame, setFrame] = useState(1);

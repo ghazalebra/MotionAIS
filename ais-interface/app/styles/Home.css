@@ -1,0 +1,61 @@
+.page-container {
+  display: flex; /* Use flexbox to create a two-column layout */
+  height: calc(100vh - 60px); /* Adjust height to account for navbar */
+  background-color: #eef7ff; /* Light background color from your palette */
+}
+
+.left-column {
+  flex: 1; /* Take up half the width */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items to the top */
+  align-items: flex-start; /* Align items to the left */
+  padding: 40px; /* Add more padding for a nicer layout */
+  max-width: 600px; /* Optional: limit width for better aesthetics */
+}
+
+.right-column {
+  flex: 1; /* Take up half the width */
+  /* You can style this section as needed */
+}
+
+/* Title styling */
+.title {
+  font-size: 4rem; /* Keep the title size */
+  font-weight: bold;
+  color: #4d869c; /* Darker color for the title */
+  margin-bottom: 15px; /* More space below the title */
+}
+
+/* Description styling */
+.description {
+  font-size: 1.5rem; /* Increase font size for better visibility */
+  color: #7ab2b2; /* Color for the description */
+  margin-bottom: 30px; /* Adjust margin to reduce space below the description */
+}
+
+/* Styling for the spine image */
+.spine-image {
+  width: 80%; /* Adjust width to fit the layout */
+  max-width: 400px; /* Limit the maximum size */
+  margin: 20px 0; /* Space above and below the image */
+  border-radius: 10px; /* Optional: rounded corners for aesthetics */
+  transform: rotate(-15deg); /* Rotate the image counterclockwise */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Button styling */
+.demo-button {
+  padding: 12px 25px; /* Slightly larger button for better touch */
+  background-color: #4d869c; /* Button color */
+  color: #eef7ff; /* Button text color */
+  text-decoration: none;
+  border-radius: 5px; /* Rounded corners for the button */
+  font-size: 1.2rem; /* Button font size */
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+  margin-top: 20px; /* Space above the button */
+}
+
+.demo-button:hover {
+  background-color: #7ab2b2; /* Lighter color on hover */
+}

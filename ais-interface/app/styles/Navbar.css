@@ -1,0 +1,36 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space between title and menu */
+  align-items: center; /* Center items vertically */
+  background-color: #4d869c; /* Use your color palette */
+  padding: 10px 20px;
+}
+
+.navbar-title {
+  color: #eef7ff; /* Title color */
+  font-size: 1.8rem; /* Adjust title size */
+  text-decoration: none; /* No underline */
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-left: 20px; /* Space between menu items */
+}
+
+.navbar-link {
+  color: #eef7ff; /* Link color */
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.navbar-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
