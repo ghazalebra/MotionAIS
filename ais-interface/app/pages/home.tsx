@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 
-const Page: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="page-container">
       <div className="left-column">
@@ -26,4 +26,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default Home;

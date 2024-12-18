@@ -51,16 +51,19 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 50%;
-  height: 600px;
+  height: 800px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.analysis-panel {
+  height: 800px;
 }
 
 .choose-sequence {
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 4px; */
 }
 
 .choose-sequence h3 {
@@ -195,4 +198,37 @@ input[type="file"] {
   margin-left: 10px;
   font-size: 1em;
   color: #333;
+}
+
+.plot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.plot-item {
+  flex: 1 1 calc(50% - 40px); /* Adjust percentage for larger items (e.g., 3 columns) */
+  max-width: calc(50% - 40px); /* Matches the flex percentage */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.plot-item img {
+  max-width: 100%;
+  max-height: 400px; /* Restrict vertical size */
+  border-radius: 5px;
+}
+
+.showsequence3D {
+  width: 400px; /* Or set any fixed width for the canvas */
+  height: 600px; /* Or set any fixed height for the canvas */
+  max-width: 100%; /* Ensures it doesn't exceed the parent container width */
+  margin: 0 auto; /* Centers the canvas if it's smaller than the parent */
+  background-color: #eef7ff; /* Optional light background */
 }

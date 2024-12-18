@@ -21,38 +21,13 @@ cur_metrics = []
 
 app = Flask(__name__)
 
-# Access-Control-Allow-Origin: http://localhost:3000
-
 DATA_PATH = 'data'
 os.makedirs(DATA_PATH, exist_ok=True)
 app.config['DATA_PATH'] = DATA_PATH
 
-# sse config for passing progress to the frontend
-# app.config["REDIS_URL"] = "redis://localhost:6379/0"
-# app.register_blueprint(sse, url_prefix='/stream')
-
 app.config['SECRET_KEY'] = 'secret!'
 CORS(app, resources={r"/*": {"origins": "*"}})  # Allow requests from localhost:3000
-# socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 
-# @app.route('/start_loop', methods=['POST', 'GET'])
-# def start_loop():
-#     total_iterations = 10
-#     for i in range(total_iterations):
-#         time.sleep(1)  # Simulate a time-consuming task
-#         progress = (i + 1) / total_iterations * 100
-#         socketio.emit('progress', {'progress': progress})
-#     return jsonify({"message": "Loop completed"}), 200
-
-# @socketio.on('connect')
-# def handle_connect():
-#     print('Client connected')
-
-
-# @app.route('/', methods=['POST'])
-# def update_progress():
-#     for i in range(10):
-#         emit('progress', {'progress': i/10})
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -80,16 +55,6 @@ def upload_file():
 
     return jsonify({"message": "Files successfully uploaded", "files": saved_files}), 200
 
-# @socketio.on('connect')
-# def publish_progress(step, total_steps):
-#     progress = (step + 1) / total_steps * 100
-#     print('progress ' + str(progress))
-#     socketio.emit('progress', {'progress': progress}, broadcast=True)
-
-# @socketio.on('connect')
-# def handle_connect():
-#     print('Client connected')
-#     emit('progress', {'progress': 40})  # Emit a test progress message
 
 @app.route('/sequence', methods=['GET'])
 def get_sequence(new_metrics=False, new_landmarks=False):
@@ -104,9 +69,6 @@ def get_sequence(new_metrics=False, new_landmarks=False):
     if not sequence_name:
         return jsonify({"error": "No sequence name provided"}), 400
     
-    # Check if sequence data is already in session
-    # if 'sequence' in session and session['sequence_name'] == sequence_name:
-    #     sequence = session['sequence']
     if len(cur_sequence) and cur_sequence_name == sequence_name:
         sequence = cur_sequence
     else:
@@ -120,37 +82,8 @@ def get_sequence(new_metrics=False, new_landmarks=False):
             with open(frame_path) as frame_file:
                 sequence.append(json.load(frame_file))
 
-    # session['sequence'] = sequence
-    # session['sequence_name'] = sequence_name
     cur_sequence = sequence
     cur_sequence_name = sequence_name
-
-    # Find landmarks
-    # outpath = sequence_path + "/results/"
-    # os.makedirs(outpath, exist_ok=True)
-    # if len(os.listdir(outpath)):
-    #     outputs = []
-    #     for i, frame in enumerate(frames):
-    #         # publish_progress(i, len(frames))
-    #         frame_path = outpath + str(frame)
-    #         with open(frame_path) as frame_file:
-    #             outputs.append(json.load(frame_file))
-    # else:
-    #     # socketio.emit('progress', {'data': 'checking'})
-    #     # outputs = find_segments_sequence(sequence=sequence, publish_progress=publish_progress)
-    #     outputs = find_segments_sequence(sequence=sequence)
-    #     for output, frame in zip(outputs, frames):
-    #         with open(outpath + f'{frame[:-5]}.json', 'w') as f:
-    #             json.dump(output, f)
-
-    # # Motion analysis
-    # metrics_path = sequence_path + "/metrics/"
-    # os.makedirs(metrics_path, exist_ok=True)
-    # if len(os.listdir(metrics_path)) or new_metrics:
-    #     with open(metrics_path+'metrics.json', 'w') as metrics_file:
-    #         metrics = json.load(metrics_file)
-    # else:    
-    #     metrics = calculate_metrics(outputs)
 
     return jsonify({"sequence": sequence}), 200
 
@@ -162,12 +95,10 @@ def get_landmarks(new=False):
     global cur_landmarks
     global cur_metrics
 
-    # sequence = request.args.get('sequence')
     sequence_name = request.args.get('sequenceName')
     if not sequence_name:
         return jsonify({"error": "No sequence name provided"}), 400
-    # if 'results' in session and session['sequence_name'] == sequence_name:
-    #     outputs = session['results']
+
     if len(cur_landmarks) and cur_sequence_name == sequence_name:
         outputs = cur_landmarks
     # else:
@@ -179,7 +110,6 @@ def get_landmarks(new=False):
         frames = sorted(os.listdir(outpath))
         outputs = []
         for i, frame in enumerate(frames):
-            # publish_progress(i, len(frames))
             frame_path = outpath + str(frame)
             with open(frame_path) as frame_file:
                 outputs.append(json.load(frame_file))
@@ -212,12 +142,10 @@ def get_plots(new=False):
     global cur_sequence
     global cur_landmarks
     global cur_metrics
-    # print(session['results'])
-    # print("in get plots")
-    # Load sequence
+
     sequence_name = request.args.get('sequenceName')
-    if not sequence_name:
-        return jsonify({"error": "No sequence name provided"}), 400
+    metrics = []
+
     # Check if metrics is in current session
     if len(cur_metrics) and cur_sequence_name == sequence_name:
         metrics = cur_metrics
@@ -227,10 +155,12 @@ def get_plots(new=False):
         metrics_path = sequence_path + '/metrics/'
         if os.path.isdir(metrics_path) and os.path.isfile(metrics_path + "metrics.json") and not new:
             with open(metrics_path+'metrics.json', 'r') as metrics_file:
-                metrics = json.load(metrics_file)
-        else:
-            # print("metrics not found! Loading the landmarks for calculation...")
-            if len(cur_landmarks) and cur_sequence_name == sequence_name:
+                try:
+                    metrics = json.load(metrics_file)
+                except:
+                    pass
+        if not metrics or new:
+            if len(cur_landmarks):
                 outputs = cur_landmarks
                 metrics = calculate_metrics(outputs)
                 os.makedirs(metrics_path, exist_ok=True)
@@ -239,15 +169,20 @@ def get_plots(new=False):
             else:
                 return jsonify({"error": "Landmarks are not detected yet! Please run the tracking first."}), 400
         
-    img_plots = plot_metrics(metrics, metrics_names=['Scoliosis Angle'])
-    
+    img_plots = plot_metrics(metrics)
     cur_metrics = metrics
     cur_sequence_name = sequence_name
     
-    return send_file(img_plots, mimetype='image/png')
+    return jsonify(img_plots)
 
-    # return jsonify({"sequence": sequence, "results": outputs}), 200
 
+@app.route('/plots/<plot_id>')
+def serve_plot(plot_id):
+    img_bytes = PLOT_STORE.get(plot_id)
+    if img_bytes:
+        return send_file(img_bytes, mimetype='image/png')
+    else:
+        return "Plot not found", 404
 
 
 
@@ -264,4 +199,3 @@ def get_sequence_list():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    # socketio.run(app, debug=True)

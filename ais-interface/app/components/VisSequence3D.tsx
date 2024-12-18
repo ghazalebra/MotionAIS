@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Stats from "three/examples/jsm/libs/stats.module";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Stats from "three/examples/jsm/libs/stats.module.js";
+// import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+// import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import "../styles/Demo.css";
 
-function VisSequence3D({ sequence, results }) {
+function VisSequence3D({ sequence, results }: { sequence: any; results: any }) {
   const [frame, setFrame] = useState(1);
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
@@ -43,7 +43,7 @@ function VisSequence3D({ sequence, results }) {
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
-    const stats = Stats();
+    const stats = new Stats();
     document.body.appendChild(stats.dom);
 
     sceneRef.current = scene;
@@ -91,15 +91,18 @@ function VisSequence3D({ sequence, results }) {
     const bodyColors = sequence[frame - 1]["colors"];
     const landmarks = results
       .slice(0, frame)
-      .reduce((acc, result) => acc.concat(result.centers.slice(0, -1)), []);
+      .reduce(
+        (acc: any, result: any) => acc.concat(result.centers.slice(0, -1)),
+        []
+      );
 
-    const bodyVertices = [];
-    const bodyColorsArray = [];
-    const landmarkVertices = [];
+    const bodyVertices: any[] = [];
+    const bodyColorsArray: any[] = [];
+    const landmarkVertices: any[] = [];
     const labels = [];
 
     // Add body points
-    body.forEach((coord, index) => {
+    body.forEach((coord: any, index: any) => {
       bodyVertices.push(coord[1], coord[0], coord[2]);
       bodyColorsArray.push(
         bodyColors[index][0],
@@ -110,7 +113,7 @@ function VisSequence3D({ sequence, results }) {
 
     // Add landmarks
     // landmarks = [1: C7, 2: ScL, 3: ScR, 4: IL, 5: IR, 6: TUp, 7: TAp, 8: TDown]
-    landmarks.forEach((coord, index) => {
+    landmarks.forEach((coord: any, index: any) => {
       landmarkVertices.push(coord[1], coord[0], coord[2] + 10);
       labels.push(`${index + 1}`);
     });
@@ -134,6 +137,8 @@ function VisSequence3D({ sequence, results }) {
     const bodyPoints = new THREE.Points(bodyGeometry, bodyMaterial);
     scene.add(bodyPoints);
     pointsRef.current = bodyPoints;
+    // bodyPoints.geometry.center(); // Centers the geometry if it's not already centered
+    // bodyPoints.position.set(0, 0, 0); // Position the object at the center of the scene
 
     // Landmark geometry and material
     const landmarkGeometry = new THREE.BufferGeometry();
@@ -150,7 +155,8 @@ function VisSequence3D({ sequence, results }) {
     const landmarkPoints = new THREE.Points(landmarkGeometry, landmarkMaterial);
     scene.add(landmarkPoints);
     landmarksRef.current = landmarkPoints;
-
+    // landmarkPoints.geometry.center(); // Centers the geometry if it's not already centered
+    // landmarkPoints.position.set(0, 0, 0); // Position the object at the center of the scene
     // Add labels
     // const loader = new FontLoader();
     // loader.load("/fonts/helvetiker_regular.typeface.json", function (font) {

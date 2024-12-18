@@ -8,16 +8,11 @@ import random
 from tqdm import tqdm
 import sys
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
-import math
 import io
-# import open3d as o3d
-# import faulthandler
-# faulthandler.enable()
-# from gui.seg_vis import visualize_point_cloud
+import uuid
 
-# print("here")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR + '/PointNet2/'
@@ -106,15 +101,11 @@ def find_centers(points, labels, n=9):
     centers = torch.zeros((len(points), n, 3))
     num_labels = torch.zeros((len(points), n))
     points = points[:, :, :3].cpu()
-    # print(centers.shape)
-    
 
     for j in range(len(points)):
         for i in range(len(points[j])):
             centers[j][labels[j][i]] += points[j][i]
             num_labels[j][labels[j][i]] += 1
-
-    # print(centers.size(), num_labels.size())
     
     return (centers / num_labels[:, :, None]).tolist()
 
@@ -166,18 +157,12 @@ def find_segments_sequence(sequence, method='', publish_progress=None):
     np.random.seed(manual_seed)
     torch.manual_seed(manual_seed)
     torch.cuda.manual_seed_all(manual_seed)
-    # def seed_worker(worker_id):
-    #     worker_seed = torch.initial_seed() % 2**32
-    #     np.random.seed(worker_seed)
-    #     random.seed(worker_seed)
 
     g = torch.Generator()
     g.manual_seed(manual_seed)
 
     project_path = '/Users/ghebr/Desktop/MotionAIS'
     pretrained_dir = project_path + '/PointNet2/Pointnet_Pointnet2_pytorch/log/back_segmentation/pointnet2_part_seg_msg_circles/10000/checkpoints'
-    # data_path = project_path + '/Data/'
-    # method = 'pointnet2_part_seg_msg_circles/10000/middle_points/'
 
     device = 'cpu'
     save = True
@@ -186,19 +171,8 @@ def find_segments_sequence(sequence, method='', publish_progress=None):
     batch_size = 1
     landmarks = 8
     
-    # output_dir = sequence_path + '/results/'
-    # input_dir = sequence_path + '/uploads/'
-    # os.makedirs(output_dir, exist_ok=True)
-    # output_files = os.listdir(output_dir)
-    # Check if output files already exist
     outputs = []
-    # if len(output_files):
-    #     for output_file in output_files:
-    #         output_path = output_dir + output_file
-    #         with open(output_path) as f:
-                # outputs.append(json.load(f))
-    # else:
-    # Find segments and landmarks (centers method)
+    
     Sequence = ScoliosisDataset(data=sequence, npoints=npoint, augmentation=False, normal_channel=normal, task='seg', mode='inference')
     sequenceDataLoader = torch.utils.data.DataLoader(Sequence, batch_size=batch_size, shuffle=False, num_workers=4)
                                                     #  , worker_init_fn=seed_worker, generator=g)
@@ -221,11 +195,6 @@ def find_segments_sequence(sequence, method='', publish_progress=None):
             output_batch = find_segments_frame(data, classifier, device, num_part=num_part)
             for output in output_batch:
                 outputs.append(output)
-            
-            # if save:
-            #     for output, frame in zip(output_batch, frames):
-            #         with open(output_dir + f'{frame[:-4]}.json', 'w') as f:
-            #             json.dump(output, f)
 
             if publish_progress is not None:
                 publish_progress(batch_id, len(sequenceDataLoader))
@@ -286,6 +255,7 @@ def moving_average(data, window_size):
     cumsum = np.cumsum(np.insert(data, 0, 0)) 
     return (cumsum[window_size:] - cumsum[:-window_size]) / float(window_size)
 
+PLOT_STORE = {}
 def plot_metrics(metrics, metrics_names = [
         'Scapulae Angle y-axis', 
         'Scapulae Angle z-axis',
@@ -293,15 +263,12 @@ def plot_metrics(metrics, metrics_names = [
         'Scoliosis Angle',
         'Pelvis Movement',
         ], window_size=5):
-    num_metrics = len(metrics_names)
-    num_cols = min(num_metrics, 3)  # Adjust the number of columns as needed (e.g., 3 columns)
 
-    num_rows = math.ceil(num_metrics / num_cols)
-    fig, axs = plt.subplots(num_rows, num_cols, figsize=(15, 5*num_rows))
+    PLOT_STORE.clear()
 
-    for i, metric_name in enumerate(metrics_names):
-        row = i // num_cols
-        col = i % num_cols
+    plot_urls = {}
+
+    for metric_name in metrics_names:
         values = metrics[metric_name]
 
         # Apply smoothing
@@ -312,40 +279,35 @@ def plot_metrics(metrics, metrics_names = [
         else:
             smoothed_values = values
             x = range(1, len(values) + 1)
-
-        ax = axs[row, col] if num_metrics > 1 else axs  # Handle single subplot case
+        fig, ax = plt.subplots(figsize=(6, 4))
 
         ax.plot(range(1, len(values) + 1), values, linestyle='-', color='grey', alpha=0.5, label='Original Values')
         ax.plot(x, smoothed_values, linestyle='-', color='green', label='Smoothed Values')
-        
         ax.set_title(f'Metric "{metric_name}"')
         ax.set_xlabel('Frame')
         ax.set_ylabel('Value')
         # ax.grid(True)
         ax.legend()
 
-    # Remove empty subplots if any
-    for i in range(num_metrics, num_rows * num_cols):
-        row = i // num_cols
-        col = i % num_cols
-        if num_metrics > 1:
-            fig.delaxes(axs[row, col])
-        else:
-            fig.delaxes(axs)
+        # Save the plot to a BytesIO object
+        img_bytes = io.BytesIO()
+        fig.savefig(img_bytes, format='png')
+        img_bytes.seek(0)
+        plt.close(fig)
 
-    plt.tight_layout()
-    img_bytes = io.BytesIO()
-    plt.savefig(img_bytes, format='png')
-    img_bytes.seek(0)
-    plt.close(fig)
-    
-    return img_bytes
+        # Generate a unique ID for the plot and store it in memory
+        plot_id = uuid.uuid4().hex
+        PLOT_STORE[plot_id] = img_bytes
+
+        # Generate URL for the plot
+        plot_urls[metric_name] = f"/plots/{plot_id}"
+
+    return plot_urls
         
 def main(args):
     sequence = []
-    path = "/Users/ghebr/Desktop/MotionAIS/ais-interface-backend/data/pt23-bending-left-free-02"
+    path = "/Users/ghebr/Desktop/Projects/MotionAIS/ais-interface-backend/data/pt23-bending-left-free-02"
     metrics = calculate_metrics(path=path)
-    # print(metrics)
     plot_metrics(metrics=metrics)
 
 #     frames = os.listdir(path + "uploads/")

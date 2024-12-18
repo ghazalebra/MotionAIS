@@ -25,4 +25,7 @@ so-open3d.yaml
 ais-interface/app/sample_data.tsx
 .DS_Store
 main_.py
+/build
 
+ais-interface/app/styles/test.css
+ais-interface/app/pages/test.tsx

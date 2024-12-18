@@ -43,7 +43,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onSave }) => {
           },
           onUploadProgress: function (progressEvent) {
             const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
+              (progressEvent.loaded * 100) / 100
             );
             setUploadProgress(percentCompleted);
           },
@@ -65,14 +65,10 @@ const FileUpload: React.FC<FileUploadProps> = ({ onSave }) => {
         <input
           type="text"
           value={sequenceName}
-          onChange={(e) => handleSequenceSelect(e)}
+          onChange={(e) => handleSequenceNameChange(e)}
           placeholder="Enter sequence name"
         />
-        <input
-          type="file"
-          multiple
-          onChange={(e) => handleSave(e.target.files, sequenceName)}
-        />
+        <input type="file" multiple onChange={(e) => handleFileChange(e)} />
         <button onClick={handleSave}>Upload</button>
       </div>
       <progress value={0} max="100"></progress>

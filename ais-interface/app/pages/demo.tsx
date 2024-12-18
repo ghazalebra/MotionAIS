@@ -9,20 +9,24 @@ import Collapsible from "react-collapsible";
 
 const Demo: React.FC = () => {
   const [uploadSequence, setUploadSequence] = useState(false);
+  const [showSequenceSelect, setShowSequenceSelect] = useState(true);
   const [sequenceList, setSequenceList] = useState<string[]>([]);
   const [sequenceName, setSequenceName] = useState("");
   const [sequence, setSequence] = useState<any[]>([]);
   const [sequenceReady, setSequenceReady] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [sequenceResults, setSequenceResults] = useState<any[]>([]);
-  const [showSegments, setShowSegments] = useState(false);
-  const [showLandmarks, setShowLandmarks] = useState(false);
-  const [showMotion, setShowMotion] = useState(false);
-  const [plots, setPlots] = useState("");
+  const [plots, setPlots] = useState({});
+  const [LoadingPlots, setLoadingPlots] = useState(false);
 
   useEffect(() => {
     fetchSequenceList();
+    setShowSequenceSelect(true);
   }, []);
+
+  const toggleShowSequenceSelect = () => {
+    setShowSequenceSelect((prev) => !prev);
+  };
 
   const fetchSequenceList = async () => {
     try {
@@ -42,6 +46,7 @@ const Demo: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setSequenceName(event.target.value);
+    // setSequenceReady(false);
   };
 
   const handleSave = (files: File[], sequenceName: string) => {
@@ -50,7 +55,10 @@ const Demo: React.FC = () => {
   };
 
   const fetchSequence = async (sequenceName?: string) => {
+    setSequenceReady(false);
     setIsFetching(true);
+    setSequenceResults([]);
+    setPlots({});
     try {
       const response = await axios.get("http://127.0.0.1:5000/sequence", {
         params: { sequenceName },
@@ -77,56 +85,66 @@ const Demo: React.FC = () => {
   };
 
   const fetchPlots = async (sequenceName?: string) => {
-    const url = new URL("http://127.0.0.1:5000/analyze");
-    if (sequenceName) {
-      url.searchParams.append("sequenceName", sequenceName);
-    }
+    // console.log("hey");
+    setPlots({});
+    setLoadingPlots(true);
+    // const url = new URL("http://127.0.0.1:5000/analyze");
+    // if (sequenceName) {
+    //   url.searchParams.append("sequenceName", sequenceName);
+    // }
+    const response = await axios.get("http://127.0.0.1:5000/analyze", {
+      params: { sequenceName },
+    });
+    const data = response.data;
 
     try {
-      const response = await fetch(url.toString());
-      const blob = await response.blob();
-      const plotUrl = URL.createObjectURL(blob);
-      console.log(plotUrl);
-      setPlots(plotUrl);
+      const response = await axios.get("http://127.0.0.1:5000/analyze", {
+        params: { sequenceName },
+      });
+      const plotUrls = response.data;
+      // console.log("Plot ready");
+      // console.log(plotUrls);
+      // console.log(Object.keys(plotUrls).length);
+      setPlots(plotUrls);
     } catch (error) {
       console.error("Error fetching the plots:", error);
     }
+    setLoadingPlots(false);
   };
 
   return (
     <div>
       {/* <h1 className="header">Motion AIS</h1> */}
       <div className="choose-sequence">
-        <div>
-          <h3>Select or Upload a Sequence:</h3>
-          <select onChange={handleSequenceSelect} defaultValue="">
-            <option value="" disabled>
-              Select a sequence
-            </option>
-            {sequenceList.map((seq, index) => (
-              <option key={index} value={seq}>
-                {seq}
+        {showSequenceSelect && (
+          <div>
+            <select onChange={handleSequenceSelect} defaultValue="">
+              <option value="" disabled>
+                Select a sequence
               </option>
-            ))}
-          </select>
-        </div>
-        <Collapsible
-          trigger={
-            <div
-              className="collapsible-trigger"
-              //  key={someStableKey}
+              {sequenceList.map((seq, index) => (
+                <option key={index} value={seq}>
+                  {seq}
+                </option>
+              ))}
+            </select>
+            <Collapsible
+              trigger={
+                <div className="collapsible-trigger">
+                  Upload Sequence
+                  <span className={`arrow ${uploadSequence ? "open" : ""}`}>
+                    &#9654;
+                  </span>
+                </div>
+              }
+              onOpening={() => setUploadSequence(true)}
+              onClosing={() => setUploadSequence(false)}
             >
-              Upload Sequence
-              <span className={`arrow ${uploadSequence ? "open" : ""}`}>
-                &#9654;
-              </span>
-            </div>
-          }
-          onOpening={() => setUploadSequence(true)}
-          onClosing={() => setUploadSequence(false)}
-        >
-          {uploadSequence && <FileUpload onSave={handleSave} />}
-        </Collapsible>
+              {uploadSequence && <FileUpload onSave={handleSave} />}
+            </Collapsible>
+          </div>
+        )}
+
         <div className="tasks">
           <button onClick={() => fetchSequence(sequenceName)}>
             Visualize Sequence
@@ -152,8 +170,22 @@ const Demo: React.FC = () => {
         </div>
 
         <div className="analysis-panel">
-          {plots ? (
-            <img src={plots} alt="Motion Analysis" />
+          {plots && Object.keys(plots).length ? (
+            <div className="plot-grid">
+              {Object.entries(plots).map(([metricName, url]) => (
+                <div className="plot-item" key={metricName}>
+                  {/* <h3>{metricName}</h3> */}
+                  <img
+                    src={"http://127.0.0.1:5000/" + url}
+                    alt={`Plot for ${metricName}`}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : LoadingPlots ? (
+            <div className="placeholder">
+              <p>Loading the graphs...</p>
+            </div>
           ) : (
             <div className="placeholder">
               <p>Analysis graphs will appear here once available.</p>
