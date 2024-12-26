@@ -1,8 +1,0 @@
-# ninja log v5
-0	19928	1686767387675103311	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/ball_query_gpu.o	4dcda059c0aa3c60
-0	19953	1686767387703102903	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/group_points_gpu.o	9564df9749989514
-1	20037	1686767387787101680	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/interpolate_gpu.o	abd48b50c8629f97
-1	20283	1686767388033098096	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/sampling_gpu.o	47dd6d9bc7d803a
-1	21386	1686767389127082160	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/pointnet2_api.o	e4e5f03514ac1a99
-4	11064	1686768340167301288	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/sampling.o	d6d41ce6f970ee41
-5	11209	1686768681305404854	/home/travail/ghebr/project/build/temp.linux-x86_64-cpython-310/learning3d/utils/lib/src/sampling.o	d6d41ce6f970ee41
